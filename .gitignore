@@ -1,0 +1,9 @@
+*.aux
+*.log
+*.out
+*.gz
+*.synctex
+*.synctex(busy)
+*.pdf
+Previous Resumes
+priv.tex
