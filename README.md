@@ -168,6 +168,9 @@
 │   │   │   ├── mac-windows.tex
 │   │   │   ├── personal-blog.tex
 │   │   │   └── personal-website.tex
+│   │   ├── skills/
+│   │   │   ├── ai-ml.tex
+│   │   │   └── fullstack.tex
 │   │   ├── education.tex
 │   │   ├── experience.tex
 │   │   ├── heading.tex
