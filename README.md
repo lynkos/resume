@@ -6,7 +6,6 @@
 <br>
 <img alt="License" src="https://img.shields.io/github/license/lynkos/resume?style=flat&label=License&labelColor=393939&color=788200&link=https%3A%2F%2Fgithub.com%2Flynkos%resume%2Fblob%2Fmain%2FLICENSE.md">
 <img alt="Last Commit" src="https://img.shields.io/github/last-commit/lynkos/resume?style=flat&label=Last+Commit&labelColor=393939&color=be0000">
-<img alt="Repo Size" src="https://img.shields.io/github/repo-size/lynkos/resume?style=flat&label=Repo+Size&labelColor=393939&color=ff62b1">
 </div>
 
 ## Requirements
