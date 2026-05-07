@@ -162,6 +162,7 @@
 │   │   │   └── oci.tex
 │   │   ├── projects/
 │   │   │   ├── algae-ai.tex
+│   │   │   ├── bim.tex
 │   │   │   ├── grovers-algo.tex
 │   │   │   ├── iphone-apps.tex
 │   │   │   ├── jekyll-chirpy.tex
@@ -170,6 +171,8 @@
 │   │   │   └── personal-website.tex
 │   │   ├── skills/
 │   │   │   ├── ai-ml.tex
+│   │   │   ├── backend.tex
+│   │   │   ├── cloud.tex
 │   │   │   └── fullstack.tex
 │   │   ├── education.tex
 │   │   ├── experience.tex
