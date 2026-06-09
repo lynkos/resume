@@ -83,7 +83,7 @@
   \vspace{-1pt}\item
     \begin{tabular*}{0.982\textwidth}{l@{\extracolsep{\fill}}r}
       \textbf{#1} & {\small#2}\\
-      \textit{\small#3} & \textit{\small#4}\\
+      \textit{\small#3} & {\small#4}\\ % \textit{\small#4}\\
     \end{tabular*}\vspace{-5pt}
 }
 
