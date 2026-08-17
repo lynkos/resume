@@ -47,6 +47,15 @@
 \setlength{\tabcolsep}{0in}
 \setlength{\footskip}{4.1pt}
 
+% Uncomment to color hyperlinks blue (instead of boxing them)
+% \definecolor{linkblue}{HTML}{345E9E}
+% \hypersetup{
+%   colorlinks=true,
+%   urlcolor=linkblue,
+%   linkcolor=linkblue,
+%   citecolor=linkblue
+% }
+
 %----------------------------------------------------------------------------------
 %                                   Magin adjustments
 %----------------------------------------------------------------------------------
