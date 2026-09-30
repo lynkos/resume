@@ -24,10 +24,11 @@
 \RequirePackage[usenames,dvipsnames]{color}
 \RequirePackage{verbatim}
 \RequirePackage{enumitem}
-\RequirePackage[pdftex]{hyperref}
+\RequirePackage[luatex]{hyperref}
 \RequirePackage{fancyhdr}
 \RequirePackage{tikz}
 \RequirePackage{fontawesome}
+\RequirePackage{luacode}
 
 \usetikzlibrary{positioning, calc}
 
@@ -92,7 +93,7 @@
   \vspace{-1pt}\item
     \begin{tabular*}{0.982\textwidth}{l@{\extracolsep{\fill}}r}
       \textbf{#1} & {\small#2}\\
-      \textit{\small#3} & {\small#4}\\ % \textit{\small#4}\\
+      \textit{\small#3} & \textit{\small#4}\\
     \end{tabular*}\vspace{-5pt}
 }
 
@@ -105,3 +106,14 @@
 \newcommand{\subheadingListEnd}{\end{itemize}}
 \newcommand{\itemListStart}{\begin{itemize}}
 \newcommand{\itemListEnd}{\end{itemize}\vspace{-5pt}}
+
+% Get personal information (i.e. email, phone number) from .env
+% IMPORTANT: REQUIRES lualatex; WON'T WORK WITH ANY OTHERS
+\begin{luacode*}
+  function get_env(varname)
+    local val = os.getenv(varname)
+    tex.sprint(val)
+  end
+\end{luacode*}
+
+\newcommand{\getenv}[1]{\directlua{get_env("#1")}}
