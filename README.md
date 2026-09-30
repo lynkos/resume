@@ -91,14 +91,14 @@ Disable backfill (increasing it allows more candidate trials and LaTeX compilati
    resume --jd-file job.txt --max-backfill-attempts 0
    ```
 
-| Name                  | Default                   |
-| --------------------- | ------------------------- |
-| Config                | `resume.yaml`             |
-| Template              | `templates/resume.tex.j2` |
-| Output Directory      | `Resume/build/`           |
-| Max Pages             | `1`                       |
-| Max Retries           | `8`                       |
-| Max Backfill Attempts | `6`                       |
+| Name                  | Default         |
+| --------------------- | --------------- |
+| Config                | `resume.yaml`   |
+| Template              | `resume.tex.j2` |
+| Output Directory      | `Resume/build/` |
+| Max Pages             | `1`             |
+| Max Retries           | `8`             |
+| Max Backfill Attempts | `6`             |
 
 > [!NOTE]
 > Build directory contains:

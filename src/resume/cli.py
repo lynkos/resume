@@ -18,7 +18,7 @@ def generate(
     title: Annotated[str | None, Option("--title", help="Optional job title.")] = None,
     company: Annotated[str | None, Option("--company", help="Optional company name.")] = None,
     config_path: Annotated[Path, Option("--config", help="Resume YAML source of truth.")] = Path("resume.yaml"),
-    template_path: Annotated[Path, Option("--template", help="Jinja LaTeX template.")] = Path("templates/resume.tex.j2"),
+    template_path: Annotated[Path, Option("--template", help="Jinja LaTeX template.")] = Path("resume.tex.j2"),
     output_dir: Annotated[Path, Option("--output-dir", help="Directory for generated TeX/PDF/debug files.")] = Path("Resume/build"),
     output_name: Annotated[str, Option("--output-name", help="Base filename for generated TeX/PDF.")] = "resume",
     max_pages: Annotated[int, Option("--max-pages", min=1, help="Maximum allowed PDF page count.")] = 1,
