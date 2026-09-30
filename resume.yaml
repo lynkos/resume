@@ -1,0 +1,740 @@
+# === EXPERIENCE ===
+experiences:
+  oci:
+    title: Software Engineer Intern
+    company: Oracle Cloud Infrastructure (OCI)
+    date: Summers 2021 -- 2024 #May 2021 -- August 2021; June 2022 -- September 2022; May 2023 -- August 2023; May 2024 -- August 2024
+    location: Seattle, WA #null
+    technologies:
+      - Python
+      - Java
+      - Jinja
+      - Terraform
+      - Grafana
+      - Oracle Database
+      - OCI
+    bullet_points:
+      switch_repair:
+        default: >-
+          Built \textbf{Java} workflow to automate \textbf{Top of Rack (ToR) switch replacement}, reducing \textbf{Jira} triage effort by \textbf{80\%}
+        variants:
+          distributed_workflow: >-
+            Built a distributed \textbf{Java} workflow to automate \textbf{Top of Rack (ToR) switch replacements}, resulting in an \textbf{80\% decrease} in time spent triaging \textbf{Jira} tickets
+          replacement_release_and_change_management: >-
+            Built a \textbf{Java} workflow to automate (1) \textbf{Top of Rack switch replacements}, (2) \textbf{release deployment}, and (3) \textbf{change management} ticket creation, resulting in an \textbf{80\% decrease} in time spent triaging \textbf{Jira} tickets
+      release_automation:
+        default: >-
+          Developed \textbf{Python} CLI and \textbf{Jinja}-based automation tooling for \textbf{CI/CD} release workflows, generating deployment artifacts, rollback plans, and change-management records across multiple cloud environments and realms
+        variants:
+          cli_and_jinja_templates: >-
+            Developed a \textbf{Python} CLI and \textbf{Jinja} templates to automate \textbf{CI/CD} release workflows by generating deployment artifacts, rollback plans, and change-management records across multiple cloud environments and realms
+          production_deployment_waves: >-
+            Developed \textbf{Python}-based \textbf{release automation} tool that generated deployment packages, automated \textbf{rollback} plans, artifact manifests, and \textbf{change-management} records across multiple production deployment waves
+          jira_change_management: >-
+            Automated release creation with \textbf{Jira} change management tickets (includes commits, rollbacks, artifacts, diffs) across different realms and environments in \textbf{Python}, streamlining operational workflows and reducing manual overhead
+      observability:
+        default: >-
+          Created \textbf{Python} CLI to automatically convert \textbf{Terraform} alarm configurations into \textbf{Grafana} dashboards and publish them using \textbf{REST APIs}, automating infrastructure health monitoring
+        variants:
+          real_time_monitoring: >-
+            Developed a \textbf{Python} automation system converting \textbf{Terraform} alarm configurations into \textbf{Grafana} dashboards, enabling real-time infrastructure health monitoring and improving observability
+      throttling_services:
+        default: >-
+          Onboarded throttling services into \textbf{OCI} limits infrastructure using \textbf{Terraform} and internal automation tooling
+      telemetry:
+        default: >-
+          Designed and implemented \textbf{Java} data access layer (DAO) and \textbf{Oracle Database} schema to manage fault-code telemetry for downstream data warehouse ingestion
+        variants:
+          backend_ingestion_and_persistence: >-
+            Designed and implemented a \textbf{Java} backend service for telemetry ingestion, routing, and persistence into centralized data platforms supporting large-scale operational analysis
+          dao_telemetry_routing: >-
+            Designed and implemented a \textbf{Java} backend using the \textbf{Data Access Object (DAO)} pattern to route \textbf{fault code telemetry} into a centralized \textbf{Oracle Database} and \textbf{data warehouse}
+          database_architecture: >-
+            Architected a Java database solution for fault code data management, designing a robust Data Access Object (DAO) layer to support a data pipeline for the data warehouse
+          database_table_and_crud: >-
+            Created table in Oracle Database for storing fault code data to be sent to data warehouse, and implemented Data Access Object (DAO) pattern to handle communication (i.e. CRUD) between table and data objects
+      testing:
+        default: >-
+          Developed \textbf{automated unit tests} achieving \textbf{90\% method coverage} and authored technical documentation (one-pagers, design docs, etc.) in Confluence
+        variants:
+          deployment_and_reliability: >-
+            Developed \textbf{automated test suites} (\textbf{90\% method coverage}) and authored production-service documentation supporting deployment and reliability workflows across distributed systems
+          compact: >-
+            Wrote comprehensive documentation and automated test suites; achieved \textbf{90\% method coverage}
+      teams:
+        default: >-
+          Teams: \textbf{Virtual Network Interface Controller as a Service}, \textbf{Asset Repair Orchestration}, \textbf{Block Storage Management Plane}
+      collaboration:
+        default: >-
+          Collaborated with cross-functional teams to design and implement scalable solutions, contributing to the overall improvement of OCI's infrastructure and services
+  
+  acyd:
+    title: Research Assistant
+    company: Analytics for Cyber Defense Lab
+    date: September 2023 -- April 2024
+    location: Miami, FL #null
+    technologies:
+      - Python
+      - NumPy
+      - Linux
+      - VMware Fusion
+    bullet_points:
+      distributed_matrix:
+        default: >-
+          Developed \textbf{Python} \href{https://github.com/lericemautech/Q-SECURE}{client-server system} for privacy-preserving distributed large matrix multiplication across \textbf{Internet of Things (IoT)} edge devices, implementing workload partitioning, parallel execution, and homomorphic encryption-based Multi-Party Computation (MPC); achieved faster runtime than \textbf{NumPy} for large-scale workloads
+        variants:
+          post_quantum_cybersecurity: >-
+            Developed \textbf{Python} \href{https://github.com/lericemautech/Q-SECURE}{client-server system} for \textbf{post-quantum cybersecurity} research, implementing homomorphic encryption-based \textbf{Multi-Party Computation (MPC)} for privacy-preserving distributed matrix multiplication across \textbf{Internet of Things (IoT)} edge devices
+          workload_orchestration: >-
+            Developed \href{https://github.com/lericemautech/Q-SECURE}{client-server software} in \textbf{Python} for workload orchestration across \textbf{Internet of Things (IoT)} edge nodes, supporting task partitioning, execution coordination, and fault-tolerant processing
+          numpy_performance: >-
+            Developed \href{https://github.com/lericemautech/Q-SECURE}{client-server software} in \textbf{Python} for large matrix multiplication outsourced to \textbf{Internet of Things (IoT)} devices, resulting in improved speed (i.e. faster runtime than \textbf{NumPy}'s \texttt{dot}, \texttt{matmult}, and \texttt{einsum} routines)
+          secure_client_server_communication: >-
+            Writing and designing \href{https://github.com/lericemautech/Q-SECURE}{custom client-server software} from scratch to facilitate secure communication between a computer (i.e. client) and $M$ Internet of Things (IoT) devices (i.e. servers)
+      workload_partitioning:
+        default: >-
+          Designed workload partitioning and parallel execution across distributed nodes, achieving faster runtime than \textbf{NumPy} for large-scale workloads
+      mpc:
+        default: >-
+          Implemented \textbf{Multi-Party Computation (MPC)}, a \textbf{quantum-resistant cryptographic algorithm}
+      matrix_performance:
+        default: >-
+          Improved large matrix multiplication speed; i.e. faster runtime than \textbf{NumPy}'s \texttt{dot}, \texttt{matmult}, and \texttt{einsum} routines
+      vmware:
+        default: >-
+          Configured \textbf{Linux virtual machines} in \textbf{VMware Fusion} to simulate distributed server environments for testing, debugging, and performance evaluation
+        variants:
+          testing_and_debugging: >-
+            Configured \textbf{Linux virtual machines} in \textbf{VMware Fusion} to simulate distributed servers for testing and debugging
+          server_simulation: >-
+            Simulated servers on separate \textbf{Linux virtual machines} using \textbf{VMware Fusion} for testing and debugging
+
+  fiu_stem:
+    title: Computer Science Education Research Assistant
+    company: Florida International University STEM Transformation Institute
+    date: May 2018 -- July 2018
+    location: Miami, FL #null
+    technologies:
+      - Microsoft Excel
+    bullet_points:
+      student_outcome_analysis:
+        default: >-
+          Computed and graphically visualized the pass, fail, and withdraw rates of select professors within Florida International University’s School of Computing and Information Sciences using the provided aggregated data of all their students (roughly 13000) from 2010 - 2018
+
+# === PROJECTS ===
+projects:
+  mac_windows:
+    name: Windows-macOS Compatibility Toolkit
+    date: March 2025 -- Present
+    context: '\href{https://blog.lynkos.dev/posts/play-windows-games}{blog.lynkos.dev/posts/play-windows-games}'
+    location: Remote # null
+    technologies:
+      - Bash
+      - Wine
+      - macOS
+    bullet_points:
+      launcher:
+        default: >-
+          Built a \href{https://github.com/lynkos/configs/blob/main/Scripts/gaming_funcs.sh}{\textbf{Bash}}-based configuration toolkit and application launcher for running Windows applications on \textbf{Apple Silicon} using \textbf{Wine}, \textbf{Game Porting Toolkit}, \textbf{DXMT}, \textbf{DXVK}, and \textbf{MoltenVK}
+        variants:
+          concise_toolkit:
+            >-
+              Built a \href{https://github.com/lynkos/configs/blob/main/Scripts/gaming_funcs.sh}{\textbf{Bash} toolkit} for launching and configuring Windows applications on \textbf{Apple Silicon} via compatibility-layer
+          compatibility_layer:
+            >-
+              Built a \href{https://github.com/lynkos/configs/blob/main/Scripts/gaming_funcs.sh}{compatibility layer} to run Windows applications on \textbf{Apple Silicon} using \textbf{Bash}, \textbf{WINE}, \textbf{Game Porting Toolkit (GPTk)}, \textbf{DXMT}, \textbf{DXVK}, and \textbf{MoltenVK}
+      environment_configuration:
+        default: >-
+          Configured environment variables (e.g. \texttt{WINEPREFIX}, \texttt{WINEDLLOVERRIDES}, MoltenVK parameters, etc.) to optimize hardware and memory allocation on \textbf{Apple Silicon}
+      performance:
+        default: >-
+          Optimized performance through automated resource management, registry tweaks, and display-scaling enhancements
+        variants:
+          high_dpi_and_os_toggles: >-
+            \textbf{Optimized performance} with high-DPI scaling calculations, automated OS-level resource toggles, Windows registry tweaks, and more
+      steam_management:
+        default: >-
+          Automated Steam library and software management by implementing high-level functions for downloading Windows assets via SteamCMD and migrating installations between isolated WINE prefixes
+      debugging:
+        default: >-
+          Built error handling and debugging utilities using shell traps for resource cleanup and \textbf{logging} to monitor \textbf{Vulkan} and \textbf{Metal} translation calls during runtime
+        variants:
+          cleanup_and_logging: >-
+            Built error handling and debugging utilities using shell traps for resource cleanup and logging
+  
+  algae_ai:
+    name: '\href{https://github.com/lynkos/algae-detection}{Edge Computer Vision System for Real-Time Environmental Monitoring}'
+    date: January 2024 -- May 2024
+    context: Capstone II
+    location: Miami, FL # null
+    technologies:
+      - Python
+      - C/C++
+      - PyTorch
+      - OpenCV
+    bullet_points:
+      system:
+        default: >-
+          Built end-to-end \textbf{computer vision} system using \textbf{ESP32-CAM}, \textbf{Python}, \textbf{OpenCV}, and \textbf{YOLOv8}, streaming MJPEG video into a real-time object-detection pipeline with \textbf{89\% mAP}, \textbf{82.6\% precision}, \textbf{89.4\% recall}
+        variants:
+          embedded_streaming_without_metrics: >-
+            Built an end-to-end \textbf{computer vision} system using an \textbf{ESP32-CAM}, \textbf{Python}, \textbf{OpenCV}, and \textbf{YOLOv8}, streaming MJPEG video from embedded hardware into a real-time object-detection inference pipeline
+      streaming:
+        default: >-
+          Implemented an \textbf{HTTP MJPEG streaming server} in \textbf{C/C++} on \textbf{ESP32-CAM} for low-latency video delivery to \textbf{Python} edge inference pipelines
+        variants:
+          concise_data_flow: >-
+            Implemented an \textbf{HTTP MJPEG streaming server} in \textbf{C++} and \textbf{C} for low-latency data flow
+          iot_video_ingestion: >-
+            Implemented an \textbf{HTTP MJPEG streaming server} in \textbf{C/C++} for low-latency video ingestion from \textbf{IoT} devices, enabling real-time data flow for edge inference pipelines
+      detection:
+        default: >-
+          Developed a \textbf{Python}-based edge computer vision pipeline using \textbf{PyTorch}, \textbf{YOLOv8}, and \textbf{OpenCV} to perform real-time object detection on \textbf{ESP32-CAM} and smartphone video streams for harmful algae monitoring
+        variants:
+          constrained_iot_pipeline: >-
+            Architected a \textbf{Python}-based edge-computing pipeline that processed live data streams from constrained \textbf{IoT} hardware (\textbf{ESP32-CAM}) for real-time environmental monitoring
+          live_video_detection: >-
+            Architected a \textbf{computer vision} pipeline using \textbf{Python}, \textbf{YOLOv8}, and \textbf{OpenCV} to detect harmful algae from live \textbf{IoT} (\textbf{ESP32-CAM} and mobile devices) video streams
+          cross_platform_detection: >-
+            Architected a cross-platform detection system using \textbf{Python}, \textbf{YOLOv8}, and \textbf{OpenCV} to identify harmful algae via livestream from \textbf{Internet of Things (IoT)} hardware (including \textbf{ESP32-CAM} and mobile devices)
+      training:
+        default: >-
+          Built an automated machine learning pipeline in \textbf{Google Colab} using \textbf{Roboflow} and \textbf{YOLOv8}, implementing dataset preprocessing, augmentation, and model training; achieved \textbf{89\% mAP}, \textbf{82.6\% precision}, \textbf{89.4\% recall}
+        variants:
+          concise_pipeline_automation: >-
+            Automated \href{https://colab.research.google.com/drive/19X4aGWTeXQbgEKVteR9qrgit67jNxkmJ}{\textbf{Machine Learning} pipeline} with \textbf{Python}, \textbf{Google Colab}, and \textbf{Roboflow SDK}
+          roboflow_preprocessing_and_metrics: >-
+            Automated a \href{https://colab.research.google.com/drive/19X4aGWTeXQbgEKVteR9qrgit67jNxkmJ}{\textbf{Machine Learning} pipeline} in \textbf{Python} and \textbf{Google Colab} to train \href{https://universe.roboflow.com/capstone2algae/algae-detection-1opyx/model/22}{algae detection models}, integrating \textbf{Roboflow SDK} to streamline \href{https://universe.roboflow.com/capstone2algae/algae-detection-1opyx/dataset/22}{dataset preprocessing and augmentation}; achieved \textbf{89\% mAP}, \textbf{82.6\% precision}, and \textbf{89.4\% recall}
+          colab_training_and_metrics: >-
+            Automated a \href{https://colab.research.google.com/drive/19X4aGWTeXQbgEKVteR9qrgit67jNxkmJ}{\textbf{Machine Learning} pipeline} in \textbf{Google Colab} to train \href{https://universe.roboflow.com/capstone2algae/algae-detection-1opyx/model/22}{algae detection models}, achieving \textbf{89\% mAP}, \textbf{82.6\% precision}, and \textbf{89.4\% recall}
+          model_training_and_evaluation: >-
+            \href{https://colab.research.google.com/drive/19X4aGWTeXQbgEKVteR9qrgit67jNxkmJ}{Trained and evaluated} custom \textbf{YOLOv8} object-detection model with \textbf{89\% mAP}, \textbf{82.6\% precision}, \textbf{89.4\% recall}
+          linked_pipeline_preprocessing_and_metrics: >-
+            Built an automated \href{https://colab.research.google.com/drive/19X4aGWTeXQbgEKVteR9qrgit67jNxkmJ}{machine learning pipeline} in \textbf{Google Colab} using \textbf{Roboflow} and \textbf{YOLOv8}, implementing dataset preprocessing, augmentation, and model training; achieved \textbf{89\% mAP}, \textbf{82.6\% precision}, \textbf{89.4\% recall}
+      edge_optimization:
+        default: >-
+          Optimized edge deployment for resource-constrained Internet of Things (IoT) hardware, including ESP32-CAM and mobile devices, by implementing \href{https://universe.roboflow.com/capstone2algae/algae-detection-1opyx/model/22}{model} export and quantization workflows to maintain real-time inference speeds
+        variants:
+          compute_and_hardware_utilization: >-
+            Optimized compute resource and hardware utilization on edge devices using \href{https://universe.roboflow.com/capstone2algae/algae-detection-1opyx/model/22}{\textbf{YOLOv8 models}}
+      hardware:
+        default: >-
+          Integrated an \textbf{ESP32-CAM}-based imaging system with a microscope setup using a 3D printed lens attachment and custom illuminator to capture environmental water samples for computer vision-based algae detection
+        variants:
+          microscope_sample_observation: >-
+            Used a microscope with an \textbf{ESP32-CAM} AI Thinker attached to the eyepiece via a 3D printed lens attachment and a custom illuminator to observe and detect specimen in local water samples
+      leadership:
+        default: >-
+          Led 3-person engineering team through \textbf{Agile} \textbf{Software Development Life Cycle (SDLC)}, defining system architecture, technical requirements, implementation plans, and project documentation
+        variants:
+          tech_lead_architecture_and_implementation: >-
+            Led a 3-person engineering team as \textbf{Tech Lead}, defining system architecture, implementation plan, and \textbf{Software Development Life Cycle (SDLC)} workflow for an end-to-end AI-based environmental monitoring system
+          concise_tech_lead: >-
+            Led a 3-person engineering team as Tech Lead, defining system architecture and SDLC for the end-to-end AI monitoring system
+
+  bim:
+    name: '\href{https://github.com/hllywluis/bim-assistant}{Intelligent Building Information Modeling (BIM) Virtual Assistant}'
+    date: September 2020 -- December 2020
+    context: Capstone I
+    location: Miami, FL #null
+    technologies:
+      - Vue.js
+      - Nuxt
+      - Bootstrap
+    bullet_points:
+      frontend:
+        default: >-
+          Developed a modern, responsive, cross-platform UI using \textbf{Vue.js}, \textbf{Nuxt}, and \textbf{Bootstrap} for a web app that helps users find relevant information from and upload BIM models, inspect them in a 2D and 3D viewer, view specific elements and properties, and ask questions via a virtual assistant (Siri or Alexa)
+        variants:
+          concise_model_interaction: >-
+            Developed front-end of web app for BIM models that allows users to search models for specific elements/properties, view and inspect models in 2D and 3D, and query models via virtual assistant (Siri or Alexa)
+      collaboration:
+        default: >-
+          Collaborated daily for at least one hour with team and attended biweekly meetings with product owner to discuss, receive project feedback, and develop user stories
+
+  grovers_algo:
+    name: '\href{https://blog.lynkos.dev/posts/grover-full}{Quantum Search Algorithm}'
+    date: January 2023 -- May 2023
+    context: Fundamentals of Quantum Computing
+    location: Miami, FL #null
+    technologies:
+      - Python
+      - Qiskit
+    bullet_points:
+      quantum_search:
+        default: >-
+          Created \href{https://github.com/lynkos/grovers-algorithm}{$N$-qubit quantum program} with \textbf{Python} and \textbf{Qiskit} to search for $m$ target(s) in an unsorted database, resulting in a quadratic speedup over classical search algorithms (i.e. $O(\sqrt{N})$ vs $O(N)$)
+      documentation:
+        default: >-
+          Documented implementation and results, highlighting the algorithm's efficiency and potential applications in database search problems
+
+  iphone_apps:
+    name: iPhone Apps
+    date: January 2025 -- May 2025
+    context: Mobile App Development
+    location: Miami, FL #null
+    technologies:
+      - Swift
+      - Xcode
+      - Firebase
+    bullet_points:
+      ios_apps:
+        default: >-
+          Created several iOS apps using \textbf{Swift}, \textbf{Xcode}, and \textbf{Firebase}, including:
+          \begin{itemize}
+              \item \href{https://github.com/lynkos/translate-me}{\textbf{TranslateMe}}: Translates between languages and allows users to store and delete their translations
+              \item \href{https://github.com/lynkos/trivia}{\textbf{Trivia}}: Challenges users with trivia questions spanning a variety of categories, formats, and difficulties
+              \item \href{https://github.com/lynkos/flashcard}{\textbf{Flashcard}}: Allows users to play a simple memory game
+          \end{itemize}
+
+  jekyll_chirpy:
+    name: Open Source Contributor | Chirpy Jekyll Theme
+    date: January 2026 -- April 2026
+    context: '\href{https://github.com/cotes2020/jekyll-theme-chirpy/pull/2642}{\textbf{PR \#2642}: fix: sidebar email link}'
+    location: Remote #null
+    technologies:
+      - Jekyll
+      - Liquid
+    bullet_points:
+      sidebar_fix:
+        default: >-
+          Diagnosed and fixed Firefox-specific frontend email-link bug in a widely used \textbf{Jekyll} theme (\href{https://github.com/cotes2020/jekyll-theme-chirpy/pull/2642}{jekyll-theme-chirpy}) with \textbf{10.1k+ GitHub stars}, submitting patch through the project's contribution and code-review workflow
+        variants:
+          cross_platform_fix_and_validation: >-
+            Engineered a cross-platform fix and resolved a critical navigation bug for a popular \textbf{Jekyll} theme (\href{https://github.com/cotes2020/jekyll-theme-chirpy/pull/2642}{jekyll-theme-chirpy}); performed validation across multiple runtime environments (Firefox, Chrome, Safari)
+          merged_pr_sidebar_redirect: >-
+            Fixed a Firefox-specific navigation bug in the open-source \textbf{Jekyll} theme \href{https://github.com/cotes2020/jekyll-theme-chirpy/pull/2642}{jekyll-theme-chirpy} (\textbf{10k+ GitHub stars}) by contributing a merged pull request to resolve a sidebar redirect issue
+          global_deployment_impact: >-
+            Fixed a critical Firefox-specific bug in the \href{https://github.com/cotes2020/jekyll-theme-chirpy/pull/2642}{jekyll-theme-chirpy} open-source project (\textbf{10.1k+ GitHub stars}), resolving redirect issue affecting sidebar navigation across thousands of globally distributed deployments
+          email_link_redirect: >-
+            Fixed a critical navigation bug in a popular open-source \textbf{Jekyll} theme (\href{https://github.com/cotes2020/jekyll-theme-chirpy/pull/2642}{jekyll-theme-chirpy}) on \textbf{GitHub} with \textbf{10k+ stars}, eliminating a Firefox-specific redirect error that caused the sidebar email link to malfunction
+      pr_lifecycle:
+        default: >-
+          Navigated the full PR lifecycle (from issue triaging to merge), adhering to strict development standards
+      browser_validation:
+        default: >-
+          Validated browser-specific behavior across Firefox, Chrome, and Safari to ensure compatibility with the existing \textbf{Jekyll} and \textbf{Liquid} architecture
+      maintainer_collaboration:
+        default: >-
+          Collaborated with maintainer throughout the PR process, adhering to strict development standards
+        variants:
+          code_quality_and_deployment_compatibility: >-
+            Collaborated with maintainer to ensure production-grade code quality and compatibility across thousands of globally distributed deployments
+
+  jobomation:
+    name: Jobomation | Local-First Job Discovery \& Evaluation Platform
+    date: August 2026 -- Present
+    context: '\href{https://github.com/lynkos/jobomation}{github.com/lynkos/jobomation}'
+    location: Remote #null
+    technologies:
+      - Python
+      - SQLite
+      - Dash
+      - AG Grid
+      - Pytest
+    bullet_points:
+      platform:
+        default: >-
+          Building a local-first \textbf{Python} application for collecting, normalizing, filtering, and persisting job postings from heterogeneous web/API sources, with modular ingestion, storage, and presentation layers backed by \textbf{SQLite}
+        variants:
+          ingestion_and_canonical_models: >-
+            Building local-first \textbf{Python} application that collects, normalizes, filters, and stores job-posting data from heterogeneous web/API sources using source-specific ingestion pipelines, canonical data models, and \textbf{SQLite}
+          automation_and_dashboard: >-
+            Developing a \textbf{Python}-based automation platform for collecting, normalizing, filtering, storing, and managing job opportunities from heterogeneous web/API sources, with \textbf{SQLite} persistence and a local dashboard
+      collectors:
+        default: >-
+          Designed pluggable collectors and normalized \textbf{data models} to separate source-specific ingestion from persistence and presentation, supporting extensible integration of job sources including Greenhouse and Indeed
+        variants:
+          normalization_filtering_and_lifecycle: >-
+            Designed pluggable collectors and canonical \textbf{data models} to normalize job data across sources including Greenhouse and Indeed, with automated filtering and lifecycle tracking
+      dashboard:
+        default: >-
+          Developed UI with \textbf{Dash} and \textbf{AG Grid} for exploring job data, inspecting job details, filtering results, and managing application state
+        variants:
+          persisted_data_interaction: >-
+            Developed a \textbf{Dash} and \textbf{AG Grid} interface for querying, filtering, inspecting, and updating persisted job data
+      ingestion_and_persistence:
+        default: >-
+          Implemented automated filtering, job lifecycle tracking, and \textbf{Pytest}-based tests for ingestion and persistence workflows, including detection of changed and inactive postings
+        variants:
+          tested_pipelines_and_separation_of_concerns: >-
+            Implemented source-specific data collection and normalization pipelines with automated tests, separating ingestion, storage, and presentation concerns for extensibility
+      ai_evaluation:
+        default: >-
+          Developing \textbf{AI/LLM-based evaluation and ranking} capabilities, including planned \textbf{MCP} integration for tool-based access to job and candidate data
+
+  local_llm:
+    name: Local LLM Runtime \& Serving
+    date: April 2025 -- Present
+    context: '\href{https://blog.lynkos.dev/posts/self-compiled-llm}{blog.lynkos.dev/posts/self-compiled-llm}'
+    location: Remote #null
+    technologies:
+      - MLC LLM
+      - llama.cpp
+      - Hugging Face
+      - Python
+      - Metal
+    bullet_points:
+      inference_stack:
+        default: >-
+          Built local LLM inference stacks from source using \textbf{MLC LLM} and \textbf{llama.cpp}, integrating \textbf{Hugging Face} models, \textbf{Python} interfaces, CLI tooling, and \textbf{REST}-based model serving
+        variants:
+          local_runtimes_and_tooling: >-
+            Built and ran \textbf{LLM runtimes} locally from source using \textbf{MLC LLM} and \textbf{llama.cpp}, working with \textbf{Hugging Face} model repositories, command-line tooling, and \textbf{Python} interfaces
+      model_optimization:
+        default: >-
+          Converted and quantized model weights and compiled \textbf{Metal}-targeted model artifacts for efficient inference on \textbf{Apple Silicon}
+      debugging:
+        default: >-
+          Tested and debugged inference workflows across model formats, runtimes, build configurations, and serving environments
+        variants:
+          rest_serving_and_compatibility: >-
+            Configured and tested local \textbf{REST}-based model serving, debugging build, runtime, model-format, and environment compatibility issues across the \textbf{LLM toolchain}
+
+  personal_blog:
+    name: Personal Blog
+    date: April 2025 -- Present
+    context: '\href{https://blog.lynkos.dev}{blog.lynkos.dev}'
+    location: Remote #null
+    technologies:
+      - Jekyll
+      - Ruby
+      - Liquid
+      - JavaScript
+      - Markdown
+      - GitHub Actions
+      - GitHub Pages
+      - Node.js
+    bullet_points:
+      platform:
+        default: >-
+          Developed a highly customized technical blog by extending Chirpy \textbf{Jekyll} theme with \textbf{Ruby} and \textbf{Liquid} plugins for UI components, including graph visualization and responsive image galleries with automatic image proxying
+        variants:
+          concise_theme_fork: >-
+            Developing blog with heavily modified fork of Jekyll theme Chirpy
+          static_platform_and_feature_overview: >-
+            Built and customized a static blogging platform by extending Jekyll with custom Ruby plugins, adding graph visualization, tabbed content, gallery slideshows, Markdown processing, link previews, image proxying, and enhanced documentation features.
+          plugins_and_build_tooling: >-
+            Extended the Chirpy Jekyll theme with custom Ruby plugins and build tooling, implementing features including graph visualization, Markdown preprocessing, image proxying, link previews, and interactive UI components.
+          concise_technical_documentation: >-
+            Extended an open-source Jekyll blogging platform with custom Ruby plugins, Markdown tooling, interactive components, and UI enhancements to support advanced technical documentation.
+          plugins_modules_and_deployment: >-
+            Developed a highly customized Jekyll-based technical blog by extending the static site generator with Ruby plugins, JavaScript modules, and automated GitHub Actions deployment.
+          metadata_markdown_and_liquid: >-
+            Extended Jekyll with custom Ruby plugins to generate site metadata, parse Markdown content, and add reusable Liquid components beyond the capabilities of the base theme.
+          ruby_interactive_components: >-
+            Built and customized technical blog by extending Chirpy Jekyll theme with Ruby plugins for interactive UI components, including graph visualization, tabbed content, and responsive image galleries with automatic image proxying
+          ruby_and_liquid_interactive_components: >-
+            Developed a highly customized technical blog by extending Chirpy Jekyll theme with Ruby and Liquid plugins for interactive UI components, including graph visualization, tabbed content, and responsive image galleries with automatic image proxying
+      graph_generation:
+        default: >-
+          Added graph-generation functionality to analyze \textbf{Markdown}, wikilinks, and internal references during site generation, producing an interactive post relationship graph
+        variants:
+          custom_pipeline_and_client_visualization: >-
+            Built a custom graph-generation pipeline that analyzes Markdown, wikilinks, and internal references during site generation to produce a post relationship graph for client-side visualization.
+          link_resolution_pipeline: >-
+            Implemented a graph-generation pipeline that resolves Markdown links, wikilinks, filenames, and URL slugs into a navigable internal link graph during static site generation.
+          pipeline_and_client_visualization: >-
+            Built a graph-generation pipeline that analyzes Markdown, wikilinks, and internal references during site generation to produce a post relationship graph for client-side visualization.
+      client_features:
+        default: >-
+          Implemented client-side features in vanilla \textbf{JavaScript}, including runnable code snippets and link previews that fetch, parse, and extract content from blog posts
+        variants:
+          cached_hover_previews_dom_api: >-
+            Implemented client-side features in vanilla JavaScript, including cached hover link previews that dynamically fetch, parse, and extract page content using the DOM API.
+          cached_previews_without_libraries: >-
+            Developed interactive frontend components in vanilla JavaScript, including cached hover previews that fetch, parse, and summarize linked articles without external libraries.
+          runnable_snippets_and_dom_api: >-
+            Implemented client-side features in JavaScript, including runnable code snippets and link previews that fetch, parse, and extract page content using the DOM API
+          runnable_snippets_and_page_extraction: >-
+            Implemented client-side features in vanilla JavaScript, including runnable code snippets and link previews that fetch, parse, and extract page content
+      deployment:
+        default: >-
+          Created a \textbf{GitHub Actions}-based \textbf{CI/CD} pipeline that automatically builds, validates, and deploys the site
+        variants:
+          obsidian_publishing_integration: >-
+            Automated blog publishing through \textbf{GitHub Actions} CI/CD workflows and Obsidian integration, streamlining testing, builds, and deployment
+          obsidian_enveloppe_workflow: >-
+            Automating build and deployment (i.e. CI/CD pipeline) with Obsidian Enveloppe plugin and custom GitHub Actions workflow, thus streamlining blog publishing and hosting
+          deployment_artifacts_and_build_steps: >-
+            Designed and automated a GitHub Actions CI/CD pipeline that builds, validates, and deploys the site to GitHub Pages, including automatic generation of deployment artifacts (CNAME, .nojekyll) and custom build steps.
+          reproducible_node_build_tooling: >-
+            Automated end-to-end deployment with GitHub Actions, GitHub Pages, and Node.js build tooling, creating a reproducible CI/CD pipeline for static site generation and publishing.
+          custom_github_pages_automation: >-
+            Built a GitHub Actions-based CI/CD pipeline that automatically builds, validates, and deploys the site to GitHub Pages with custom deployment automation.
+          reproducible_ruby_environments: >-
+            Automated build and deployment to GitHub Pages with GitHub Actions, reproducible Ruby environments, and production-ready static site generation.
+          production_ruby_builds: >-
+            Automated production deployments using GitHub Actions with reproducible Ruby builds and GitHub Pages publishing.
+          github_pages_build_and_validation: >-
+            Designed and automated a GitHub Actions CI/CD pipeline that builds, validates, and deploys the site to GitHub Pages
+          created_custom_deployment_pipeline: >-
+            Created a GitHub Actions-based CI/CD pipeline that automatically builds, validates, and deploys the site to GitHub Pages with custom deployment automation.
+      custom_features:
+        default: >-
+          Built custom features including graph visualization, link previews, image proxying, and runnable code snippets
+        variants:
+          expanded_feature_integration: >-
+            Integrating custom features, including: graph view to visualize post relationships, link preview, gallery slideshow, custom image proxy, tabbed container, auto-repair malformed Markdown links, drafts page for in-progress articles
+      ui_components:
+        default: >-
+          Adding and extending UI components, including: description list (i.e. \texttt{<dl>} element) styled after lined-paper, \texttt{<details>} element styled to match theme, and "Important" callout block
+        variants:
+          reusable_liquid_and_metadata_parsing: >-
+            Designed reusable Liquid plugins for interactive components, including tabbed content and responsive image galleries with automatic image proxying and metadata parsing.
+          content_tooling_and_asset_generation: >-
+            Built custom content tooling, including responsive image galleries, tabbed documentation blocks, and automated asset generation integrated into the Jekyll build process.
+      authoring_workflows:
+        default: >-
+          Engineered reusable authoring workflows, templates, and Markdown tooling to streamline technical publishing while maintaining a large collection of computer science, AI, and systems programming articles.
+        variants:
+          templates_and_automated_content_generation: >-
+            Developed a maintainable technical publishing platform with reusable templates, documentation workflows, and automated content generation for long-form engineering articles.
+          maintainable_platform_and_markdown_tooling: >-
+            Engineered a maintainable technical publishing platform with reusable templates, documentation workflows, and Markdown tooling to streamline technical publishing while maintaining long-form engineering articles
+
+  personal_website_blog:
+    name: Personal Website \& Blog
+    date: September 2022 -- Present
+    context: '\href{https://lynkos.dev}{lynkos.dev} \& \href{https://blog.lynkos.dev}{blog.lynkos.dev}'
+    location: Remote #null
+    technologies:
+      - GitHub Actions
+    bullet_points:
+      deployment:
+        default: >-
+          Built and maintained \textbf{CI/CD} pipelines using \textbf{GitHub Actions}, automating build, containerized testing, and static deployment workflows to achieve zero-downtime releases
+        variants:
+          continuous_content_delivery: >-
+            Built and maintained a personal website and technical blog with \textbf{CI/CD}-driven deployment pipelines using \textbf{GitHub Actions}, including automated build, test, and deployment workflows for continuous content delivery
+          custom_tooling_and_publishing: >-
+            Automating testing, build, and deployment workflows using \textbf{GitHub Actions} CI/CD pipelines and custom tooling, streamlining content publishing and site updates
+          concise_build_and_release: >-
+            Automated site build and release workflows to streamline publishing and reduce manual deployment overhead
+      web_platform:
+        default: >-
+          Developed custom web-platform infrastructure supporting dynamic content rendering, graph visualization, image proxying, link preview generation, and executable code integration
+        variants:
+          interactive_components_and_maintenance: >-
+            Developing and maintaining a personal website and technical blog featuring custom interactive UI components, graph visualization, link previews, image proxying, and runnable code snippets
+
+  personal_website:
+    name: Personal Website
+    date: September 2022 -- Present
+    context: '\href{https://lynkos.dev}{lynkos.dev}'
+    location: Remote #null
+    technologies:
+      - JavaScript
+      - HTML
+      - SASS
+      - Node.js
+      - Babel
+      - PostCSS
+      - Autoprefixer
+      - HTML Minifier
+      - GitHub Actions
+      - GitHub Pages
+    bullet_points:
+      desktop_environment:
+        default: >-
+          Designed and developed a macOS-inspired desktop environment in the browser; includes draggable and resizable windows, desktop interactions, launchpad, dock, menu bar, calculator, music player, and other features
+        variants:
+          technology_stack_and_window_management: >-
+            Architected and developed a browser-based desktop environment inspired by macOS using \textbf{JavaScript}, \textbf{Node.js}, \textbf{HTML}, and \textbf{SASS}, implementing modular UI components, window management, and interactive system applications
+          native_ui_components: >-
+            Designed and developed a macOS-inspired desktop environment in the browser, implementing draggable and resizable windows, desktop interactions, Launchpad, Dock, menu bar, calculator, music player, and other native macOS-inspired UI components.
+          sequoia_portfolio: >-
+            Developed a fully interactive portfolio website featuring a desktop-style UI inspired by macOS Sequoia with custom window management, application launcher, desktop, menu bar, and productivity applications.
+          operating_system_interactions: >-
+            Architected and implemented a browser-based desktop environment that reproduces native operating system interactions, including window management, application launching, desktop files, and interactive system utilities}
+          vanilla_javascript_without_frameworks: >-
+            Built a desktop-style web application inspired by macOS using vanilla JavaScript, implementing drag-and-drop interactions and dynamic UI behavior without frontend frameworks.
+          concise_vanilla_stack: >-
+            Designed and developed a macOS-inspired web application using vanilla JavaScript, HTML, and SASS
+      frontend_architecture:
+        default: >-
+          Implemented modular front-end architecture using \textbf{JavaScript} and \textbf{SASS} with responsive layouts, reusable components, and client-side state management
+        variants:
+          maintainability_and_extensibility: >-
+            Designed reusable front-end architecture with modular \textbf{JavaScript} components and maintainable styling to support rapid feature development and long-term extensibility
+          responsive_desktop_interactions: >-
+            Built reusable JavaScript components and custom client-side interactions to emulate desktop application behavior while maintaining responsive performance across desktop and mobile devices.
+          responsive_ui_and_state_management: >-
+            Implemented modular front-end architecture using JavaScript and SASS with responsive layouts, reusable UI components, and client-side state management.
+          modular_codebase_and_production_builds: >-
+            Developed a modular front-end codebase using HTML, JavaScript, SASS, and Node.js with automated transpilation, asset generation, and production builds}
+          single_page_component_architecture: >-
+            Engineered a modular single-page web application with a component-based JavaScript architecture, separating application logic into reusable modules for desktop, window, and application management.
+          desktop_services_and_event_handling: >-
+            Architected reusable JavaScript modules for desktop services, application state, event handling, and interactive components, improving maintainability as the project grew.
+          concise_state_and_event_modules: >-
+            Architected reusable JavaScript modules for application state, event handling, and interactive components
+      deployment:
+        default: >-
+          Automated build and deployment by using \textbf{Node.js}, \textbf{Babel}, and \textbf{GitHub Actions} to streamline \textbf{CI/CD} and release workflows
+        variants:
+          containerized_testing_and_git_workflows: >-
+            Built and maintained \textbf{CI/CD} pipelines with \textbf{GitHub Actions} to automate builds, containerized testing, asset generation, and deployment to \textbf{GitHub Pages} through reproducible \textbf{Git}-based workflows
+          node_build_and_continuous_deployment: >-
+            Created a Node.js-based build pipeline using Babel, SASS, and automated asset processing, with CI/CD through GitHub Actions for continuous deployment to GitHub Pages.
+          tooling_and_release_workflows: >-
+            Automated build and deployment using Node.js tooling, Babel, GitHub Actions, and GitHub Pages to streamline continuous integration and release workflows.
+          unattended_validation_and_deployment: >-
+            Built an automated CI/CD pipeline with GitHub Actions to validate, build, and deploy the website to GitHub Pages without manual intervention}
+          asset_optimization_and_seo: >-
+            Built a CI/CD pipeline with GitHub Actions that installs dependencies, compiles assets, performs HTML/CSS/JavaScript optimization, generates SEO artifacts, and deploys automatically to production.
+          caching_and_concurrent_builds: >-
+            Optimized deployment workflows using dependency caching, concurrent build stages, and automated static site publishing to GitHub Pages.
+          validation_and_seo_generation: >-
+            Implemented GitHub Actions CI/CD to automate building, validation, SEO asset generation, and deployment to GitHub Pages.
+          concise_dependency_caching: >-
+            Built GitHub Actions CI/CD pipeline with dependency caching to automate builds and deployment to GitHub Pages
+      performance:
+        default: >-
+          Optimized performance and responsiveness through lazy-loaded assets, compression, and efficient client-side rendering while maintaining compatibility across modern browsers
+        variants:
+          asset_optimization_and_transpilation: >-
+            Optimized UX through asset optimization, transpilation, and compression while maintaining compatibility across modern browsers
+          lazy_loading_and_interface_components: >-
+            Optimized UX through lazy-loaded assets, automated transpilation, and custom interface components while maintaining compatibility across modern browsers
+      build_toolchain:
+        default: >-
+          Created a cross-browser frontend build system using Node.js, Babel, Sass, PostCSS, and HTML Minifier to reduce bundle size while maintaining compatibility across modern browsers.
+        variants:
+          automated_production_asset_processing: >-
+            Developed an automated frontend toolchain using Node.js, Babel, Sass, PostCSS, and HTML Minifier to transpile, optimize, and compress production assets.
+          production_pipeline_with_autoprefixer: >-
+            Created a production build pipeline using Node.js, Babel, SASS, PostCSS, Autoprefixer, and HTML Minifier to transpile, optimize, and compress production assets for deployment
+          babel_and_asset_processing: >-
+            Developed an automated frontend toolchain using  Babel, Sass, PostCSS, and HTML Minifier to transpile, optimize, and compress production assets
+          concise_production_asset_processing: >-
+            Developed an automated frontend toolchain using Node.js, Babel, Sass, PostCSS, and HTML Minifier to transpile, optimize, and compress production assets
+      user_experience:
+        default: >-
+          Engineered numerous quality-of-life features including interactive file previews, contact/mail integration, custom search/navigation behavior, and optimized static asset delivery for a polished user experience.
+      applications:
+        default: >-
+          Built interactive applications including a calculator, file explorer, notes editor, music player, browser, and launchpad
+
+# === SKILLS ===
+skills:
+  - Python
+  - Java
+  - Bash
+  - JavaScript
+  - C/C++
+  - SQL
+  - HTML/CSS
+  - Git
+  - VMware Fusion
+  - Conda
+  - Wine
+  - Maven
+  - Jupyter
+  - Jira
+  - OCI
+  - GitHub Actions
+  - Terraform
+  - Docker
+  - Grafana
+  - Prometheus
+  - NumPy
+  - Jinja
+  - Spring
+  - Mockito
+  - JUnit
+  - PyTorch
+  - OpenCV
+  - Oracle Database
+  - SQLite
+  - MongoDB
+  - Firebase
+  - Linux
+  - Windows
+  - macOS
+  - TypeScript
+  - YAML
+  - JSON
+  - Ruby
+  - XML
+  - Node.js
+  - REST
+  - Agile
+  - Plotly
+  - TensorFlow
+  - Keras
+  - Hugging Face
+  - SymPy
+  - Pandas
+  - SciKit
+  - React
+  - SASS
+  - Bootstrap
+  - Tailwind
+  - Nuxt.js
+  - Next.js
+  - Spring Boot
+  - Vue
+  - Espressif
+  - Arduino
+  - Qiskit
+  - Roboflow
+  - PlatformIO
+  - Jekyll
+  - Babel
+  - Webpack
+  - Ultralytics YOLO
+  - Confluence
+  - ONNX
+  - Colab
+  - LLVM
+  - Postman
+  - Homebrew
+  - GitHub
+  - Bitbucket
+  - Obsidian
+  - Nodemon
+  - Wireshark
+  - CMake
+  - Make
+  - YubiKey
+  - Mermaid
+  - Loom
+  - Atlassian
+  - FileZilla
+  - Zoom
+  - Slack
+  - Microsoft Office
+  - OpenCode
+  - Claude
+  - Gemini
+  - Copilot
+  - ChatGPT
+  - LLaMA
+  - Mistral
+  - DeepSeek
+  - Ollama
+  - Perplexity
+  - Vim
+  - Eclipse
+  - Sublime Text
+  - Visual Studio Code
+  - PyCharm
+  - IntelliJ IDEA
+  - WebStorm
+  - Xcode
+  - MySQL
+  - Google Cloud Platform (GCP)
+  - Cloudflare
+  - Ubuntu
+  - UNIX
+
+
+# === EDUCATION ===
+education:
+  institution: Florida International University
+  degree: Bachelor of Science in Computer Science
+  date: Graduated August 2025
+  location: Miami, FL #null
+  relevant_courses: >-
+    Artificial Intelligence, Operating Systems, Net-Centric Computing, Data Structures, Discrete Mathematics, Systems Programming, Computer Architecture, Software Engineering, Algorithm Techniques, Principles of Programming Languages, Mobile Application Development, Fundamentals of Quantum Computing

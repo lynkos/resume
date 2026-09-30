@@ -1,0 +1,59 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "resume"
+dynamic = ["version"]
+description = "LLM-assisted, deterministic LaTeX resume tailoring and page fitting"
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Kiran Brahmatewari", email = "lynkos@admin.com" }]
+keywords = [
+    "jobs",
+    "job",
+    "resume",
+    "latex",
+    "automation",
+    "python",
+    "work"
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.14"
+]
+requires-python = ">=3.14"
+dependencies = [
+    "jinja2>=3.1.6",
+    "openai>=3.20.0",
+    "pydantic>=2.13.5",
+    "pypdf>=6.19.0",
+    "python-dotenv>=1.2.3",
+    "pyyaml>=6.0.3",
+    "typer>=0.27.2"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.1.1"
+]
+
+[project.scripts]
+resume = "resume.cli:app"
+
+[project.urls]
+Homepage = "https://github.com/lynkos/resume"
+Repository = "https://github.com/lynkos/resume.git"
+Issues = "https://github.com/lynkos/resume/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/resume"]
+
+[tool.hatch.version]
+path = "src/resume/__init__.py"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

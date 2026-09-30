@@ -1,12 +1,15 @@
+.env
+.vscode
+__pycache__
 *.aux
 *.log
 *.out
 *.gz
 *.synctex
 *.synctex(busy)
+*.fls
+*.fdb_latexmk
 *.pdf
+Resume/build
 Previous Resumes
-priv.tex
-frontend
-cloud
-backend
+jobs

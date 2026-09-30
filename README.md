@@ -17,46 +17,145 @@
 
 ## Installation
 1. Enter the directory where you want the repository ([`resume`](https://github.com/lynkos/resume)) to be cloned
-     * POSIX
-       ```sh
-       cd ~/path/to/directory
-       ```
-     * Windows
-       ```sh
-       cd C:\Users\user\path\to\directory
-       ```
+  * POSIX
+    ```sh
+    cd ~/path/to/directory
+    ```
+  * Windows
+    ```sh
+    cd C:\Users\user\path\to\directory
+    ```
 2. Clone the repository ([`resume`](https://github.com/lynkos/resume))
    ```sh
    git clone https://github.com/lynkos/resume.git
    ```
-3. Make sure `/Library/TeX/texbin` is in your `PATH` environment variable
-4. Open Visual Studio Code
-5. Download [LaTeX Workshop extension](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
-6. Open the Command Palette
+
+> [!IMPORTANT]
+> Make sure `/Library/TeX/texbin`, and a LaTeX installation with `latexmk` is in your `PATH` environment variable
+
+## Tailor Resume
+### Quick Start
+1. Install with Conda
+   ```sh
+   conda create -n resume_env python=3.14 pip -y
+   conda activate resume_env
+   python -m pip install -e ".[dev]"
+   ```
+
+2. Create `.env` with API key, model name, email, and phone number:
+   ```
+   OPENAI_API_KEY="YOUR_API_KEY"
+   OPENAI_MODEL="MODEL_NAME"
+   EMAIL="EMAIL@DOMAIN.com"
+   PHONE_NUMBER="+1 (234) 567--8900"
+   ```
+
+3. Configure [`resume.yaml`](resume.yaml) accordingly
+
+### Usage
+Generate a resume for a job description in `jobs/archil.txt`
+   ```sh
+   resume \
+     --jd-file jobs/archil.txt \
+     --title "Distributed Systems Engineer" \
+     --company "Archil"
+   ```
+
+Generate a resume for a job description provided via CLI
+   ```sh
+   resume --jd "Full job description here..." --title "Software Engineer"
+   ```
+
+Generate resume for `jobs/pnnl.txt` from existing draft at `examples/pnnl-draft.json` (instead of requesting a new initial draft)
+   ```sh
+   resume --jd-file jobs/pnnl.txt \
+     --title "Early Career Software Engineer" \
+     --company "Pacific Northwest National Laboratory" \
+     --draft-file examples/pnnl-draft.json \
+     --max-backfill-attempts 0 \
+     --max-fit-retries 0
+   ```
+
+Allow up to 2 pages
+   ```sh
+   resume --jd-file job.txt --max-pages 2
+   ```
+
+Disable both page fitting and backfill
+   ```sh
+   resume --jd-file job.txt --no-page-limit
+   ```
+
+Disable backfill (increasing it allows more candidate trials and LaTeX compilations)
+   ```sh
+   resume --jd-file job.txt --max-backfill-attempts 0
+   ```
+
+| Name                  | Default                   |
+| --------------------- | ------------------------- |
+| Config                | `resume.yaml`             |
+| Template              | `templates/resume.tex.j2` |
+| Output Directory      | `Resume/build/`           |
+| Max Pages             | `1`                       |
+| Max Retries           | `8`                       |
+| Max Backfill Attempts | `6`                       |
+
+> [!NOTE]
+> Build directory contains:
+> - Latest generated `.tex`
+> - PDF (when compilation succeeds)
+> - LaTeX logs
+> - Most recent `draft.json` after any fitting adjustments
+
+### Testing
+```sh
+PYTHONPATH=src python -m pytest -q tests/test_backfill.py
+```
+
+## View Resume in Visual Studio Code
+1. Open Visual Studio Code
+2. Download [LaTeX Workshop extension](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
+3. Open the Command Palette
     * Mac: <kbd>Command ⌘</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>
     * Windows: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>
-7. Search and select `Preferences: Open User Settings (JSON)`
-8. Add the following lines to `settings.json`:
+4. Search and select `Preferences: Open User Settings (JSON)`
+5. Add the following lines to `settings.json`:
    ```json
     "latex-workshop.latex.tools": [
+       {
+         "name": "lualatex",
+         "command": "lualatex",
+         "args": [
+           "-interaction=nonstopmode",
+           "-file-line-error",
+           "-pdf",
+           "%DOC%"
+         ],
+         "env": {
+           "EMAIL": "EMAIL@DOMAIN.com",
+           "PHONE_NUMBER": "+1 (234) 567--8900"
+         }
+       },
        {
          "name": "latexmk",
          "command": "latexmk",
          "args": [
-           "-synctex=1",
            "-interaction=nonstopmode",
            "-file-line-error",
            "-pdf",
+           "-lualatex",
            "-outdir=%OUTDIR%",
            "%DOC%"
          ],
-         "env": {}
+         "env": {
+           "EMAIL": "EMAIL@DOMAIN.com",
+           "PHONE_NUMBER": "+1 (234) 567--8900"
+         }
        },
        {
          "name": "xelatex",
          "command": "xelatex",
          "args": [
-           "-synctex=1",
            "-interaction=nonstopmode",
            "-file-line-error",
            "-pdf",
@@ -68,7 +167,6 @@
          "name": "pdflatex",
          "command": "pdflatex",
          "args": [
-           "-synctex=1",
            "-interaction=nonstopmode",
            "-file-line-error",
            "%DOC%"
@@ -80,21 +178,13 @@
          "command": "bibtex",
          "args": [ "%DOCFILE%" ],
          "env": {}
-       },
-       {
-         "name": "lualatex",
-         "command": "lualatex",
-         "args": [
-           "-synctex=1",
-           "-interaction=nonstopmode",
-           "-file-line-error",
-           "-pdf",
-           "%DOC%"
-         ],
-         "env": {}
        }
     ],
     "latex-workshop.latex.recipes": [
+       {
+         "name": "lualatex",
+         "tools": [ "lualatex" ]
+       },
        {
          "name": "pdfLaTeX",
          "tools": [ "pdflatex" ]
@@ -106,10 +196,6 @@
        {
          "name": "xelatex",
          "tools": [ "xelatex" ]
-       },
-       {
-         "name": "lualatex",
-         "tools": [ "lualatex" ]
        },
        {
          "name": "pdflatex ➞ bibtex ➞ pdflatex * 2",
@@ -132,62 +218,18 @@
     ],
     "latex-workshop.view.pdf.viewer": "tab",
    ```
-9. Save changes to `settings.json` file
+6.  Save changes to `settings.json` file
     * Mac: <kbd>Command ⌘</kbd> + <kbd>S</kbd>
     * Windows: <kbd>Ctrl</kbd> + <kbd>S</kbd>
-
-## Usage
-1. Open newly cloned `resume` directory in Visual Studio Code
-2. Open or create a `.tex` file you want to edit
-3. Edit the file as you see fit
-4. Compile the file
+7. Open newly cloned `resume` directory in Visual Studio Code
+8. Open or create a `.tex` file you want to edit
+9. Edit the file as you see fit
+10.  Compile the file
     * Mac: <kbd>Command ⌘</kbd> + <kbd>Option ⌥</kbd> + <kbd>B</kbd>
     * Windows: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>B</kbd>
-5. View the `.pdf` output
+11.  View the `.pdf` output
     * Mac: <kbd>Command ⌘</kbd> + <kbd>Option ⌥</kbd> + <kbd>V</kbd>
     * Windows: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>V</kbd>
-
-## Repository Structure
-<details open>
-<summary>Click to expand/hide</summary>
-<pre>
-.
-├── Previous Resumes/
-│   └── ...
-├── Resume/
-│   ├── common/
-│   │   ├── experience/
-│   │   │   ├── acyd.tex
-│   │   │   ├── fiu_stem.tex
-│   │   │   └── oci.tex
-│   │   ├── projects/
-│   │   │   ├── algae-ai.tex
-│   │   │   ├── bim.tex
-│   │   │   ├── grovers-algo.tex
-│   │   │   ├── iphone-apps.tex
-│   │   │   ├── jekyll-chirpy.tex
-│   │   │   ├── mac-windows.tex
-│   │   │   ├── personal-blog.tex
-│   │   │   └── personal-website.tex
-│   │   ├── skills/
-│   │   │   ├── ai-ml.tex
-│   │   │   ├── backend.tex
-│   │   │   ├── cloud.tex
-│   │   │   └── fullstack.tex
-│   │   ├── education.tex
-│   │   ├── experience.tex
-│   │   ├── heading.tex
-│   │   ├── priv.tex
-│   │   ├── projects.tex
-│   │   └── skills.tex
-│   ├── Kiran_Brahmatewari_Resume_Short.tex
-│   ├── Kiran_Brahmatewari_Resume.tex
-│   └── resume_style.cls
-├── .gitignore
-├── LICENSE.md
-└── README.md
-</pre>
-</details>
 
 ## References
 - [LaTeX Workshop Wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki)

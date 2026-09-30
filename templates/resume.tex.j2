@@ -1,0 +1,78 @@
+\documentclass{../resume_style}
+\begin{document}
+  \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+    \textbf{\href{https://lynkos.dev}{\Large \uppercase{Kiran Brahmatewari}}} & \faEnvelope \hspace{0.05em} \href{mailto:\getenv{EMAIL}}{\getenv{EMAIL}}\\
+    \faLinkedin \hspace{0.05em} \href{https://linkedin.com/in/kiran-brahmatewari}{kiran-brahmatewari} \faGithub \hspace{0.05em} \href{https://github.com/lynkos}{lynkos} \faLink \hspace{0.05em} \href{https://lynkos.dev}{lynkos.dev} \faPencil \hspace{0.02em} \href{https://blog.lynkos.dev}{blog.lynkos.dev} & \faPhone \hspace{0.05em} \getenv{PHONE_NUMBER}\\
+  \end{tabular*}
+
+  {#- Offsets extra space after heading -#}
+  \vspace{-1pt}
+
+  {% macro render_experience() -%}
+  \section{Experience}
+    \subheadingListStart
+    {% for entry in resume.experiences %}
+      \subheading
+        { {{- entry.title -}} }{ {{- entry.date -}} }
+        { {{- entry.company -}} }{ {{- entry.location or "" -}} }
+      \itemListStart
+      {% for bullet in entry.bullet_points %}
+        \listItem{}{ {{- bullet.text -}} }
+      {% endfor %}
+      \itemListEnd
+    {% endfor %}
+    \subheadingListEnd
+  {%- endmacro %}
+
+  {% macro render_projects() -%}
+  \section{Projects}
+    \subheadingListStart
+    {% for entry in resume.projects %}
+      \subheading
+        { {{- entry.name -}} }{ {{- entry.date -}} }
+        { {{- entry.context or "" -}} }{ {{- entry.location or "" -}} }
+      \itemListStart
+      {% for bullet in entry.bullet_points %}
+        \listItem{}{ {{- bullet.text -}} }
+      {% endfor %}
+      \itemListEnd
+    {% endfor %}
+    \subheadingListEnd
+  {%- endmacro %}
+
+  {% macro render_skills() -%}
+  \section{Skills}
+    \subheadingListStart
+    {% for category in resume.skills.categories %}
+      \skillsListItem{ {{- category.name | latex_escape -}} }
+        {: {{ category.skills | map('latex_escape') | join(', ') }}}
+    {% endfor %}
+    \subheadingListEnd
+  {%- endmacro %}
+
+  {% macro render_education() -%}
+  \section{Education}
+    \subheadingListStart
+      \subheading
+        { {{- resume.education.degree -}} }{ {{- resume.education.date -}} }
+        { {{- resume.education.institution -}} }{ {{- resume.education.location or "" -}} }
+      {% if resume.education.relevant_courses %}
+      \itemListStart
+        \listItem{Relevant Coursework}{: {{- resume.education.relevant_courses -}} }
+      \itemListEnd
+      {% endif %}
+    \subheadingListEnd
+  {%- endmacro %}
+
+  {% for section in resume.section_order %}
+    {% if section.value == "Experience" %}
+      {{ render_experience() }}
+    {% elif section.value == "Projects" %}
+      {{ render_projects() }}
+    {% elif section.value == "Skills" %}
+      {{ render_skills() }}
+    {% elif section.value == "Education" %}
+      {{ render_education() }}
+    {% endif %}
+  {% endfor %}
+\end{document}
