@@ -5,9 +5,17 @@
     {\href{https://github.com/lynkos/jobomation}{github.com/lynkos/jobomation}}{}
     \itemListStart
         \listItem{}
-            {Developing a \textbf{Python}-based automation platform for collecting, normalizing, filtering, storing, and managing job opportunities from heterogeneous web/API sources, with \textbf{SQLite} persistence and a local dashboard}
+            {Building a local-first \textbf{Python} application for collecting, normalizing, filtering, and persisting job postings from heterogeneous web/API sources, with modular ingestion, storage, and presentation layers backed by \textbf{SQLite}}
+            %{Building local-first \textbf{Python} application that collects, normalizes, filters, and stores job-posting data from heterogeneous web/API sources using source-specific ingestion pipelines, canonical data models, and \textbf{SQLite}} %multiple sources using structured models, source-specific ingestion pipelines, and \textbf{SQLite}}
+            %{Developing a \textbf{Python}-based automation platform for collecting, normalizing, filtering, storing, and managing job opportunities from heterogeneous web/API sources, with \textbf{SQLite} persistence and a local dashboard}
         \listItem{}
-            {Designed pluggable collectors and canonical \textbf{data models} to normalize job data across sources including Greenhouse and Indeed, with automated filtering and lifecycle tracking}
+            {Designed pluggable collectors and normalized \textbf{data models} to separate source-specific ingestion from persistence and presentation, supporting extensible integration of job sources including Greenhouse and Indeed}
+            %{Designed pluggable collectors and canonical \textbf{data models} to normalize job data across sources including Greenhouse and Indeed, with automated filtering and lifecycle tracking}
+        % \listItem{}
+        %     {Developed UI with \textbf{Dash} and \textbf{AG Grid} for exploring job data, inspecting job details, filtering results, and managing application state}
+            % {Developed a \textbf{Dash} and \textbf{AG Grid} interface for querying, filtering, inspecting, and updating persisted job data}
         \listItem{}
-            {Developing \textbf{AI/LLM-based evaluation and ranking} capabilities, including planned \textbf{MCP} integration for tool-based access to job and candidate data}
+            {Implemented automated filtering, job lifecycle tracking, and \textbf{Pytest}-based tests for ingestion and persistence workflows, including detection of changed and inactive postings}
+        %     {Implemented source-specific data collection and normalization pipelines with automated tests, separating ingestion, storage, and presentation concerns for extensibility}
+            %{Developing \textbf{AI/LLM-based evaluation and ranking} capabilities, including planned \textbf{MCP} integration for tool-based access to job and candidate data}
     \itemListEnd
