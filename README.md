@@ -1,48 +1,54 @@
 <div align="center">
 <h1>Resume</h1>
+<img alt="Python" src="https://img.shields.io/static/v1?label=Language&style=flat&message=Python+3.14.7&logo=python&color=c7a228&labelColor=393939&logoColor=4f97d1">
 <img alt="LaTeX" src="https://img.shields.io/static/v1?label=Language&style=flat&message=LaTeX&logo=latex&color=008080&labelColor=393939&logoColor=008080">
+<img alt="Jinja" src="https://img.shields.io/static/v1?label=Language&style=flat&message=Jinja&logo=jinja&color=7E0C1B&labelColor=393939&logoColor=7E0C1B">
 <img alt="Shell" src="https://img.shields.io/static/v1?label=Shell&style=flat&message=Bash&logo=gnu+bash&color=4EAA25&labelColor=393939&logoColor=4EAA25">
+<img alt="Conda" src="https://img.shields.io/static/v1?label=Tool&style=flat&message=Conda&logo=anaconda&color=44A833&labelColor=393939&logoColor=44A833">
 <img alt="Code+Editor" src="https://img.shields.io/static/v1?label=Code+Editor&style=flat&message=Visual+Studio+Code&logo=visual+studio+code&color=007acc&labelColor=393939&logoColor=007acc">
 <br>
 <img alt="License" src="https://img.shields.io/github/license/lynkos/resume?style=flat&label=License&labelColor=393939&color=788200&link=https%3A%2F%2Fgithub.com%2Flynkos%resume%2Fblob%2Fmain%2FLICENSE.md">
 <img alt="Last Commit" src="https://img.shields.io/github/last-commit/lynkos/resume?style=flat&label=Last+Commit&labelColor=393939&color=be0000">
+<br>
+LLM-assisted, deterministic LaTeX resume tailoring.
 </div>
 
 ## Requirements
-- [x] [LaTeX](https://www.latex-project.org/get)
+- [x] [LaTeX](https://www.latex-project.org/get) (including [`latexmk`](https://www.cantab.net/users/johncollins/latexmk))
+- [x] [Conda](https://www.anaconda.com/download) (preferred) or [Python](https://www.python.org/downloads)
 - [x] [Visual Studio Code](https://code.visualstudio.com)
 
-> [!TIP]
-> Use [Overleaf](https://www.overleaf.com/) for online LaTeX editing and collaboration
-
 ## Installation
-1. Enter the directory where you want the repository ([`resume`](https://github.com/lynkos/resume)) to be cloned
-  * POSIX
-    ```sh
-    cd ~/path/to/directory
-    ```
-  * Windows
-    ```sh
-    cd C:\Users\user\path\to\directory
-    ```
-2. Clone the repository ([`resume`](https://github.com/lynkos/resume))
-   ```sh
-   git clone https://github.com/lynkos/resume.git
-   ```
+Clone and enter the repository
+  ```sh
+  git clone https://github.com/lynkos/resume.git && cd resume
+  ```
 
 > [!IMPORTANT]
-> Make sure `/Library/TeX/texbin`, and a LaTeX installation with `latexmk` is in your `PATH` environment variable
+> Make sure a LaTeX installation with `latexmk` (e.g. `/Library/TeX/texbin`) is in your `PATH` environment variable
 
 ## Tailor Resume
+<div align="center">
+  <img src="tailoring_algorithm.svg" alt="Resume tailoring algorithm">
+</div>
+
 ### Quick Start
-1. Install with Conda
+1. Create new Conda environment `resume_env`
    ```sh
    conda create -n resume_env python=3.14 pip -y
+   ```
+
+2. Activate environment
+   ```sh
    conda activate resume_env
+   ```
+
+3. For testing, install optional dependencies
+   ```sh
    python -m pip install -e ".[dev]"
    ```
 
-2. Create `.env` with API key, model name, email, and phone number:
+4. Create `.env` file with these values and configure accordingly
    ```
    OPENAI_API_KEY="YOUR_API_KEY"
    OPENAI_MODEL="MODEL_NAME"
@@ -50,7 +56,7 @@
    PHONE_NUMBER="+1 (234) 567--8900"
    ```
 
-3. Configure [`resume.yaml`](resume.yaml) accordingly
+5. If needed, edit [`resume.yaml`](resume.yaml)
 
 ### Usage
 Generate a resume for a job description in `jobs/archil.txt`
@@ -66,12 +72,13 @@ Generate a resume for a job description provided via CLI
    resume --jd "Full job description here..." --title "Software Engineer"
    ```
 
-Generate resume for `jobs/pnnl.txt` from existing draft at `examples/pnnl-draft.json` (instead of requesting a new initial draft)
+Generate resume for `job.txt` with `draft.json` (instead of requesting new initial draft)
    ```sh
-   resume --jd-file jobs/pnnl.txt \
-     --title "Early Career Software Engineer" \
-     --company "Pacific Northwest National Laboratory" \
-     --draft-file examples/pnnl-draft.json \
+   resume \
+     --jd-file job.txt \
+     --title "Software Engineer" \
+     --company "Some National Laboratory" \
+     --draft-file draft.json \
      --max-backfill-attempts 0 \
      --max-fit-retries 0
    ```
@@ -95,24 +102,17 @@ Disable backfill (increasing it allows more candidate trials and LaTeX compilati
 | --------------------- | --------------- |
 | Config                | `resume.yaml`   |
 | Template              | `resume.tex.j2` |
-| Output Directory      | `Resume/build/` |
+| Output Directory      | `Resume/build`  |
 | Max Pages             | `1`             |
 | Max Retries           | `8`             |
 | Max Backfill Attempts | `6`             |
-
-> [!NOTE]
-> Build directory contains:
-> - Latest generated `.tex`
-> - PDF (when compilation succeeds)
-> - LaTeX logs
-> - Most recent `draft.json` after any fitting adjustments
 
 ### Testing
 ```sh
 PYTHONPATH=src python -m pytest -q tests/test_backfill.py
 ```
 
-## View Resume in Visual Studio Code
+## View Resume
 1. Open Visual Studio Code
 2. Download [LaTeX Workshop extension](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
 3. Open the Command Palette
@@ -123,12 +123,14 @@ PYTHONPATH=src python -m pytest -q tests/test_backfill.py
    ```json
     "latex-workshop.latex.tools": [
        {
-         "name": "lualatex",
-         "command": "lualatex",
+         "name": "latexmk",
+         "command": "latexmk",
          "args": [
+           "-lualatex",
            "-interaction=nonstopmode",
            "-file-line-error",
            "-pdf",
+           "-outdir=%OUTDIR%",
            "%DOC%"
          ],
          "env": {
@@ -137,14 +139,12 @@ PYTHONPATH=src python -m pytest -q tests/test_backfill.py
          }
        },
        {
-         "name": "latexmk",
-         "command": "latexmk",
+         "name": "lualatex",
+         "command": "lualatex",
          "args": [
            "-interaction=nonstopmode",
            "-file-line-error",
            "-pdf",
-           "-lualatex",
-           "-outdir=%OUTDIR%",
            "%DOC%"
          ],
          "env": {
@@ -198,22 +198,8 @@ PYTHONPATH=src python -m pytest -q tests/test_backfill.py
          "tools": [ "xelatex" ]
        },
        {
-         "name": "pdflatex ➞ bibtex ➞ pdflatex * 2",
-         "tools": [
-           "pdflatex",
-           "bibtex",
-           "pdflatex",
-           "pdflatex"
-         ]
-       },
-       {
-       "name": "xelatex ➞ bibtex ➞ xelatex * 2",
-       "tools": [
-         "xelatex",
-         "bibtex",
-         "xelatex",
-         "xelatex"
-         ]
+         "name": "bibtex",
+         "tools": [ "bibtex" ]
        }
     ],
     "latex-workshop.view.pdf.viewer": "tab",
@@ -225,11 +211,11 @@ PYTHONPATH=src python -m pytest -q tests/test_backfill.py
 8. Open or create a `.tex` file you want to edit
 9. Edit the file as you see fit
 10.  Compile the file
-    * Mac: <kbd>Command ⌘</kbd> + <kbd>Option ⌥</kbd> + <kbd>B</kbd>
-    * Windows: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>B</kbd>
+     * Mac: <kbd>Command ⌘</kbd> + <kbd>Option ⌥</kbd> + <kbd>B</kbd>
+     * Windows: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>B</kbd>
 11.  View the `.pdf` output
-    * Mac: <kbd>Command ⌘</kbd> + <kbd>Option ⌥</kbd> + <kbd>V</kbd>
-    * Windows: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>V</kbd>
+     * Mac: <kbd>Command ⌘</kbd> + <kbd>Option ⌥</kbd> + <kbd>V</kbd>
+     * Windows: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>V</kbd>
 
 ## References
 - [LaTeX Workshop Wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki)
