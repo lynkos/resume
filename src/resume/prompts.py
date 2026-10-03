@@ -53,10 +53,17 @@ def _job_text(job: JobContext) -> str:
 
 
 def build_tailoring_prompt(config: ResumeConfig, job: JobContext, *, max_pages: int | None = 1) -> str:
-    page_target = "No fixed page limit" if max_pages is None else f"{max_pages} page(s)"
+    page_target = (
+        "No fixed page limit."
+        if max_pages is None
+        else f"Target length: {max_pages} page. Select content accordingly."
+        if max_pages == 1
+        else f"Target length: {max_pages} pages. Select content accordingly."
+    )
+    
     return (
         f"{_job_text(job)}\n\n"
-        f"Target length: {page_target}. Select content accordingly.\n\n"
+        f"{page_target}\n\n"
         "ResumeConfig (authoritative source of truth):\n"
         f"{config.model_dump_json(indent=2)}"
     )
@@ -110,8 +117,8 @@ def build_adjustment_prompt(
     allow_rewrite: bool = True,
 ) -> str:
     selected_source = _selected_source_config(config, draft)
-    fitting_mode = (
-        "Wording edits and content removal are allowed."
+    adjustment_mode = (
+        "Fitting mode: Wording edits and content removal are allowed."
         if allow_rewrite
         else "Removal mode: remove content using remove_relevant_courses, remove_bullet, remove_entry, or remove_skill. Wording edits are not available."
     )
@@ -119,7 +126,7 @@ def build_adjustment_prompt(
         f"{_job_text(job)}\n\n"
         f"Page limit: {max_pages}\n"
         f"Current compiled page count: {actual_pages}\n\n"
-        f"Fitting mode: {fitting_mode}\n\n"
+        f"{adjustment_mode}\n\n"
         "Current ResumeDraft:\n"
         f"{draft.model_dump_json(indent=2)}\n\n"
         "Current resolved Resume:\n"
