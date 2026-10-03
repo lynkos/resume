@@ -44,16 +44,14 @@ Rules:
 - To remove a selected skill, use remove_skill with its exact category name and skill string from the draft. An empty category is removed automatically. Keep at least one skill overall.
 """
 
-
 @debug.trace
 def _job_text(job: JobContext) -> str:
     debug.print("Format job context for prompt", title=job.title, company=job.company, description_characters=len(job.description))
     return (
-        f"Company: {job.company}\n" if job.company else ""
-        f"Job title: {job.title}\n" if job.title else ""
-        f"Job description:\n--- BEGIN JOB DESCRIPTION ---\n{job.description}\n--- END JOB DESCRIPTION ---"
+        (f"Company: {job.company}\n" if job.company else "") +
+        (f"Job title: {job.title}\n" if job.title else "") +
+        (f"Job description:\n--- BEGIN JOB DESCRIPTION ---\n{job.description}\n--- END JOB DESCRIPTION ---")
     )
-
 
 @debug.trace
 def build_tailoring_prompt(config: ResumeConfig, job: JobContext, *, max_pages: int | None = 1) -> str:
