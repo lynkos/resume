@@ -2,6 +2,7 @@ from __future__ import annotations
 from enum import StrEnum
 from typing import TypeAlias, Literal
 from pydantic import BaseModel, Field, model_validator
+from .debug import debug
 
 Skill: TypeAlias = str
 EntryType: TypeAlias = Literal["experience", "project"]
@@ -57,6 +58,7 @@ class ResumeConfig(BaseModel):
     education: EducationConfig
 
     @model_validator(mode = "after")
+    @debug.trace
     def validate_skill_inventory(self) -> "ResumeConfig":
         if len(self.skills) != len(set(self.skills)):
             raise ValueError("ResumeConfig.skills must not contain duplicates")
@@ -74,6 +76,7 @@ class EntryDraft(BaseModel):
     bullet_points: list[BulletPointDraft]
 
     @model_validator(mode = "after")
+    @debug.trace
     def validate_bullet_ids(self) -> "EntryDraft":
         ids = [bullet.id for bullet in self.bullet_points]
         if len(ids) != len(set(ids)):
@@ -86,6 +89,7 @@ class SkillCategory(BaseModel):
     skills: list[Skill]
 
     @model_validator(mode = "after")
+    @debug.trace
     def validate_skills(self) -> "SkillCategory":
         if len(self.skills) != len(set(self.skills)):
             raise ValueError(f"Skill category {self.name!r} contains duplicate skills")
@@ -100,6 +104,7 @@ class ResumeDraft(BaseModel):
     include_relevant_courses: bool = False
 
     @model_validator(mode = "after")
+    @debug.trace
     def validate_draft(self) -> "ResumeDraft":
         if len(self.section_order) != len(Section) or set(self.section_order) != set(Section):
             raise ValueError("section_order must contain Education, Experience, Projects, and Skills exactly once")

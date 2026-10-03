@@ -77,6 +77,7 @@ def test_prompt_contains_only_omitted_candidate_ids(config, draft):
         config=config, draft=draft, resume=resolve_resume(config, draft),
         job=JobContext(description="Python engineering"), max_candidates=3,
     )
+    assert prompt is not None
     candidates = loads(prompt.split("Available omitted bullets (authoritative):\n")[1])
     assert set(candidates["experience"]["work"]) == {"small", "large", "bad"}
 
@@ -85,7 +86,7 @@ def test_no_available_bullets_does_not_call_model(config, draft):
     config.experiences["work"].bullet_points = {"selected": config.experiences["work"].bullet_points["selected"]}
     def unexpected_request(**kwargs):
         pytest.fail("No request should be made without candidates")
-    llm = OpenAIResumeLLM(model="test-model", client=SimpleNamespace(responses=SimpleNamespace(parse=unexpected_request)))
+    llm = OpenAIResumeLLM(model="test-model", client=SimpleNamespace(responses=SimpleNamespace(parse=unexpected_request))) # type: ignore
     assert llm.suggest_additions(config=config, draft=draft, resume=resolve_resume(config, draft),
                                 job=JobContext(description="Python"), max_candidates=6) == []
 
@@ -95,7 +96,7 @@ def test_plan_is_bounded_and_uses_structured_format(config, draft):
     def parse(**kwargs):
         calls.append(kwargs)
         return SimpleNamespace(output_parsed=_BackfillPlan(additions=[addition("small"), addition("large")]))
-    llm = OpenAIResumeLLM(model="test-model", client=SimpleNamespace(responses=SimpleNamespace(parse=parse)))
+    llm = OpenAIResumeLLM(model="test-model", client=SimpleNamespace(responses=SimpleNamespace(parse=parse))) # type: ignore
     plan = llm.suggest_additions(config=config, draft=draft, resume=resolve_resume(config, draft),
                                 job=JobContext(description="Python"), max_candidates=1)
     assert len(calls) == 1
@@ -139,7 +140,7 @@ def trial_build(config, draft, tmp_path, monkeypatch):
         llm = SimpleNamespace(suggest_additions=lambda **kwargs: candidates)
         build._backfill_resume(
             config=config, draft=draft, resume=resume, job=JobContext(description="Python"),
-            llm=llm, template_path=Path("unused"), output_dir=tmp_path,
+            llm=llm, template_path=Path("unused"), output_dir=tmp_path, # type: ignore
             output_name="resume", tex_path=tex, pdf_path=pdf,
             max_pages=1, max_attempts=max_attempts,
         )
@@ -155,6 +156,7 @@ def assert_saved_bullets(trial, expected):
     assert [b["id"] for b in draft["experiences"][0]["bullet_points"]] == expected
     pdf = PdfReader(trial.pdf)
     assert len(pdf.pages) == 1
+    assert pdf.metadata is not None
     assert pdf.metadata.title == ",".join(expected)
 
 
@@ -205,7 +207,7 @@ def test_optional_planning_failure_preserves_valid_build(config, draft, trial_bu
     llm = SimpleNamespace(suggest_additions=fail)
     (trial_build.root / "error.json").write_text('{"type":"old_failure"}')
     result = build.build_resume(
-        config=config, draft=draft, job=JobContext(description="Python"), llm=llm,
+        config=config, draft=draft, job=JobContext(description="Python"), llm=llm, # type: ignore
         template_path=Path("unused"), output_dir=trial_build.root,
     )
     assert result == trial_build.pdf
@@ -216,7 +218,7 @@ def test_optional_planning_failure_preserves_valid_build(config, draft, trial_bu
 
 def test_backfill_can_be_disabled(config, draft, trial_build):
     build.build_resume(
-        config=config, draft=draft, job=JobContext(description="Python"), llm=object(),
+        config=config, draft=draft, job=JobContext(description="Python"), llm=object(), # type: ignore
         template_path=Path("unused"), output_dir=trial_build.root, max_backfill_attempts=0,
     )
     assert_saved_bullets(trial_build, ["selected"])

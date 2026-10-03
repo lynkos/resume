@@ -194,6 +194,12 @@ Disable backfill (increasing it allows more candidate trials and LaTeX compilati
          <td align="center">OpenAI model; otherwise uses <code>OPENAI_MODEL</code> from <code>.env</code></td>
          <td align="center"><code>None</code></td>
        </tr>
+       <tr>
+         <td align="center" style="white-space: nowrap;"><code>-D</code>, <code>--debug</code></td>
+         <td align="center"><code>bool</code></td>
+         <td align="center">Print detailed execution traces, prompts, responses, and compiler output to stderr</td>
+         <td align="center"><code>False</code></td>
+       </tr>
      </tbody>
    </table>
 </details>

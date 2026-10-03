@@ -1,5 +1,6 @@
 from pathlib import Path
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
+from .debug import debug
 from .models import (
     BulletPoint,
     BulletPointConfig,
@@ -14,7 +15,9 @@ from .models import (
 )
 
 
+@debug.trace
 def _resolve_bullet(config: BulletPointConfig, draft: BulletPointDraft) -> BulletPoint:
+    debug.print("Resolve bullet", bullet_id=draft.id, variant=draft.variant, rewritten=draft.rewrite is not None)
     if draft.variant is not None and draft.variant not in config.variants:
         raise ValueError(f"Unknown bullet variant: {draft.variant!r}")
 
@@ -30,6 +33,7 @@ def _resolve_bullet(config: BulletPointConfig, draft: BulletPointDraft) -> Bulle
         text = config.default
         generated = False
 
+    debug.dump("Resolved bullet text", text)
     return BulletPoint(
         id=draft.id,
         text=text,
@@ -38,9 +42,13 @@ def _resolve_bullet(config: BulletPointConfig, draft: BulletPointDraft) -> Bulle
     )
 
 
+@debug.trace
 def resolve_resume(config: ResumeConfig, draft: ResumeDraft) -> Resume:
+    debug.print("Resolve resume", section_order=draft.section_order, experiences=len(draft.experiences), projects=len(draft.projects))
     experiences: list[Experience] = []
+    
     for entry in draft.experiences:
+        debug.print("Resolve experience entry", entry_id=entry.id, bullets=len(entry.bullet_points))
         if entry.id not in config.experiences:
             raise ValueError(f"Unknown experience ID: {entry.id!r}")
         
@@ -64,6 +72,7 @@ def resolve_resume(config: ResumeConfig, draft: ResumeDraft) -> Resume:
 
     projects: list[Project] = []
     for entry in draft.projects:
+        debug.print("Resolve project entry", entry_id=entry.id, bullets=len(entry.bullet_points))
         if entry.id not in config.projects:
             raise ValueError(f"Unknown project ID: {entry.id!r}")
         
@@ -86,11 +95,13 @@ def resolve_resume(config: ResumeConfig, draft: ResumeDraft) -> Resume:
         )
 
     selected_skills = [skill for category in draft.skills for skill in category.skills]
+    debug.print("Validate selected skills", categories=len(draft.skills), skills=len(selected_skills))
     unknown_skills = set(selected_skills) - set(config.skills)
     if unknown_skills:
         raise ValueError(f"ResumeDraft contains unknown skills: {', '.join(unknown_skills)}")
 
     relevant_courses = (config.education.relevant_courses if draft.include_relevant_courses else None)
+    debug.print("Resolve education", include_relevant_courses=draft.include_relevant_courses)
     if draft.include_relevant_courses and not relevant_courses:
         raise ValueError("ResumeDraft requests Relevant Coursework, but none is configured")
 
@@ -111,7 +122,9 @@ def resolve_resume(config: ResumeConfig, draft: ResumeDraft) -> Resume:
     )
 
 
+@debug.trace
 def _latex_escape(value: str) -> str:
+    debug.print("Escape LaTeX text", characters=len(value))
     replacements = {
         "\\": r"\textbackslash{}",
         "&": r"\&",
@@ -127,6 +140,7 @@ def _latex_escape(value: str) -> str:
     return "".join(replacements.get(char, char) for char in value)
 
 
+@debug.trace
 def render_resume(
     *,
     config: ResumeConfig,
@@ -136,8 +150,11 @@ def render_resume(
     output_name: str = "resume"
 ) -> tuple[Path, Resume]:
     resume = resolve_resume(config, draft)
+    #debug.dump("Resolved resume", resume)
+    debug.print("Create render output directory", path=output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    debug.print("Create Jinja environment", template_directory=template_path.parent)
     env = Environment(
         loader=FileSystemLoader(str(template_path.parent)),
         undefined=StrictUndefined,
@@ -147,9 +164,13 @@ def render_resume(
         keep_trailing_newline=True,
     )
     env.filters["latex_escape"] = _latex_escape
+    debug.print("Load Jinja template", path=template_path)
     template = env.get_template(template_path.name)
-    rendered = template.render(resume=resume)
+    with debug.step("Jinja template.render"):
+        rendered = template.render(resume=resume)
 
     tex_path = output_dir / f"{output_name}.tex"
+    #debug.dump("Rendered LaTeX", rendered)
+    debug.print("Write LaTeX", path=tex_path, characters=len(rendered))
     tex_path.write_text(rendered, encoding="utf-8")
     return tex_path, resume

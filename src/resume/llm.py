@@ -1,8 +1,9 @@
 from __future__ import annotations
 from openai import OpenAI, OpenAIError
 from os import getenv
-from typing import Annotated, Literal
+from typing import Annotated, Literal, TypeVar
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
+from .debug import debug
 from .error import ResumeLLMError
 from .models import (
     EntryDraft,
@@ -24,6 +25,7 @@ from .prompts import (
 
 
 _NonBlankText = Annotated[str, Field(pattern=r"\S")]
+_Response = TypeVar("_Response", bound=BaseModel)
 
 
 class _LLMModel(BaseModel):
@@ -94,8 +96,10 @@ class _BackfillPlan(_LLMModel):
 
 
 class OpenAIResumeLLM:
+    @debug.trace
     def __init__(self, model: str | None = None, client: OpenAI | None = None) -> None:
         selected_model = model or getenv("OPENAI_MODEL")
+        debug.print("Select OpenAI model", model=selected_model, source="argument" if model else "OPENAI_MODEL")
         
         if not selected_model:
             raise ValueError("Set OPENAI_MODEL in .env or pass model= explicitly")
@@ -103,25 +107,52 @@ class OpenAIResumeLLM:
         self.model = selected_model
         
         if client is None:
+            debug.print("Create OpenAI client")
             client = OpenAI(api_key = getenv("OPENAI_API_KEY"))
+        else: debug.print("Use supplied OpenAI client")
         
         self.client = client
 
+    @debug.trace
+    def _request(self, *, instructions: str, prompt: str, text_format: type[_Response]) -> _Response | None:
+        debug.print("Prepare structured request", model=self.model, schema=text_format.__name__, prompt_characters=len(prompt))
+        #debug.dump("OpenAI instructions", instructions)
+        #debug.dump("OpenAI prompt", prompt)
+        
+        with debug.step("OpenAI responses.parse", spinner=True):
+            response = self.client.responses.parse(
+                model=self.model,
+                instructions=instructions,
+                input=prompt,
+                text_format=text_format,
+            )
+            
+        parsed = response.output_parsed
+        
+        if debug.enabled:
+            debug.print("OpenAI response", response_id=response.id, status=response.status)
+            debug.dump("Token usage", response.usage)
+            #debug.dump("Parsed response", parsed)
+            
+            if parsed is None:
+                debug.dump("Unparsed response output", response.output)
+                
+        return parsed
+
+    @debug.trace
     def create_draft(self, config: ResumeConfig, job: JobContext, *, max_pages: int | None = 1) -> ResumeDraft:
-        response = self.client.responses.parse(
-            model=self.model,
+        draft = self._request(
             instructions=TAILOR_INSTRUCTIONS,
-            input=build_tailoring_prompt(config, job, max_pages=max_pages),
+            prompt=build_tailoring_prompt(config, job, max_pages=max_pages),
             text_format=ResumeDraft,
         )
-        
-        draft = response.output_parsed
         
         if draft is None:
             raise ResumeLLMError("The model did not return a valid ResumeDraft")
         
         return draft
 
+    @debug.trace
     def suggest_additions(
         self,
         *,
@@ -135,23 +166,26 @@ class OpenAIResumeLLM:
             config=config, draft=draft, resume=resume, job=job,
             max_candidates=max_candidates,
         )
-        if prompt is None: return []
+        if prompt is None:
+            debug.print("Skip backfill request: no eligible candidates")
+            return []
         
         try:
-            response = self.client.responses.parse(
-                model=self.model,
+            parsed = self._request(
                 instructions=BACKFILL_INSTRUCTIONS,
-                input=prompt,
+                prompt=prompt,
                 text_format=_BackfillPlan,
             )
         except (OpenAIError, ValidationError) as exc:
             raise ResumeLLMError(f"Could not plan resume additions: {exc}") from exc
         
-        if response.output_parsed is None:
+        if parsed is None:
             raise ResumeLLMError("The model did not return a valid backfill plan")
         
-        return response.output_parsed.additions[:max_candidates]
+        debug.print("Limit backfill plan", proposed=len(parsed.additions), maximum=max_candidates)
+        return parsed.additions[:max_candidates]
 
+    @debug.trace
     def adjust_draft_once(
         self,
         *,
@@ -178,21 +212,18 @@ class OpenAIResumeLLM:
         )
 
         for attempt in range(1, max_attempts + 1):
-            response = self.client.responses.parse(
-                model=self.model,
-                instructions=ADJUST_INSTRUCTIONS,
-                input=prompt,
-                text_format=_AdjustmentResponse if allow_rewrite else _ReductionResponse,
-            )
-            parsed = response.output_parsed
+            debug.print("Adjustment request", attempt=attempt, maximum=max_attempts, allow_rewrite=allow_rewrite)
+            parsed = self._request(instructions=ADJUST_INSTRUCTIONS, prompt=prompt, text_format=_AdjustmentResponse if allow_rewrite else _ReductionResponse)
             if parsed is None:
                 raise ResumeLLMError("The model did not return a valid resume adjustment")
 
             try:
                 return _apply_resume_adjustment(config, draft, parsed.adjustment)
             except ResumeLLMError as exc:
+                debug.print("Reject adjustment", reason=str(exc), attempt=attempt, maximum=max_attempts)
                 if attempt == max_attempts:
                     raise ResumeLLMError(f"Could not obtain a valid resume adjustment after {max_attempts} attempts. Last rejection: {exc}") from exc
+                debug.print("Append rejection feedback and retry")
                 prompt += (
                     f"\n\nRejected adjustment:\n{parsed.model_dump_json()}\n"
                     f"Reason: {exc}\n"
@@ -202,8 +233,11 @@ class OpenAIResumeLLM:
         raise AssertionError("Unreachable")
 
 
+@debug.trace
 def _find_entry(draft: ResumeDraft, entry_type: str, entry_id: str) -> EntryDraft:
+    debug.print("Find selected entry", entry_type=entry_type, entry_id=entry_id)
     entries = draft.experiences if entry_type == "experience" else draft.projects
+    
     try:
         return next(entry for entry in entries if entry.id == entry_id)
     
@@ -211,40 +245,54 @@ def _find_entry(draft: ResumeDraft, entry_type: str, entry_id: str) -> EntryDraf
         raise ResumeLLMError(f"Adjustment targets unknown {entry_type} entry {entry_id!r}") from exc
 
 
+@debug.trace
 def _apply_resume_adjustment(config: ResumeConfig, draft: ResumeDraft, adjustment: _ResumeAdjustment) -> ResumeDraft:
+    debug.dump("Apply adjustment", adjustment)
+    debug.print("Copy draft before adjustment")
     result = draft.model_copy(deep=True) # can i do this w/o deep-copying (or copying in general)?
 
     if adjustment.action == "remove_relevant_courses":
         if not result.include_relevant_courses:
             raise ResumeLLMError("Relevant Coursework is already hidden")
         result.include_relevant_courses = False
+        debug.print("Hide relevant coursework; validate updated draft")
         return ResumeDraft.model_validate(result.model_dump())
 
     if adjustment.action == "remove_skill":
+        debug.print("Find selected skill", category=adjustment.category, skill=adjustment.skill)
         category = next((item for item in result.skills if item.name == adjustment.category), None)
+        
         if category is None or adjustment.skill not in category.skills:
             raise ResumeLLMError(f"Adjustment targets unknown selected skill {adjustment.category!r}: {adjustment.skill!r}")
+        
         if sum(len(item.skills) for item in result.skills) <= 1:
             raise ResumeLLMError("Cannot remove the final skill from the Skills section")
         
         category.skills.remove(adjustment.skill)
         if not category.skills:
+            debug.print("Remove empty skill category", category=category.name)
             result.skills = [item for item in result.skills if item.name != category.name]
         
+        debug.print("Skill removed; validate updated draft")
         return ResumeDraft.model_validate(result.model_dump())
 
     entry = _find_entry(result, adjustment.entry_type, adjustment.entry_id)
     if adjustment.action == "remove_entry":
         entries = result.experiences if adjustment.entry_type == "experience" else result.projects
+        
         if len(entries) <= 1:
             raise ResumeLLMError(f"Cannot remove the final {adjustment.entry_type} entry")
+        
         remaining = [item for item in entries if item.id != adjustment.entry_id]
+        
         if adjustment.entry_type == "experience":
             result.experiences = remaining
-        else:
-            result.projects = remaining
+        else: result.projects = remaining
+        
+        debug.print("Entry removed; validate updated draft", entry_type=adjustment.entry_type, entry_id=adjustment.entry_id)
         return ResumeDraft.model_validate(result.model_dump())
 
+    debug.print("Find selected bullet", entry_id=adjustment.entry_id, bullet_id=adjustment.bullet_id)
     try:
         bullet = next(item for item in entry.bullet_points if item.id == adjustment.bullet_id)
     except StopIteration as exc:
@@ -264,6 +312,7 @@ def _apply_resume_adjustment(config: ResumeConfig, draft: ResumeDraft, adjustmen
             if bullet.variant is None
             else config_bullet.variants[bullet.variant]
         )
+    debug.dump("Current bullet text", current_text)
 
     if adjustment.action == "change_variant":
         variant = adjustment.variant
@@ -272,6 +321,7 @@ def _apply_resume_adjustment(config: ResumeConfig, draft: ResumeDraft, adjustmen
         # shadowing an explicitly configured variant named "default".
         # ?
         if variant == "default" and variant not in config_bullet.variants:
+            debug.print("Normalize default variant label to null")
             variant = None
         if variant is not None and variant not in config_bullet.variants:
             raise ResumeLLMError(f"Unknown variant {variant!r} for {adjustment.entry_id}.{adjustment.bullet_id}. Use null for the default text or one of {list(config_bullet.variants)!r}")
@@ -282,22 +332,30 @@ def _apply_resume_adjustment(config: ResumeConfig, draft: ResumeDraft, adjustmen
         
         bullet.variant = variant
         bullet.rewrite = None
+        debug.print("Change bullet variant", variant=variant)
+        debug.dump("Replacement bullet text", next_text)
 
     elif adjustment.action == "rewrite_bullet":
         rewrite = adjustment.rewrite.strip()
         if rewrite == current_text.strip():
             raise ResumeLLMError("Rewrite produces the same text as the current bullet")
         bullet.rewrite = rewrite
+        debug.dump("Replacement bullet text", rewrite)
 
     elif adjustment.action == "remove_bullet":
         if len(entry.bullet_points) <= 1:
             raise ResumeLLMError("MVP will not remove the final bullet from an entry")
         entry.bullet_points = [item for item in entry.bullet_points if item.id != adjustment.bullet_id]
+        debug.print("Remove bullet", bullet_id=adjustment.bullet_id, remaining=len(entry.bullet_points))
 
+    debug.print("Validate adjusted draft")
     return ResumeDraft.model_validate(result.model_dump())
 
 
+@debug.trace
 def apply_bullet_addition(config: ResumeConfig, draft: ResumeDraft, addition: _BulletAddition) -> ResumeDraft:
+    debug.dump("Apply bullet addition", addition)
+    debug.print("Copy draft before addition")
     result = draft.model_copy(deep=True)
     
     entry = _find_entry(result, addition.entry_type, addition.entry_id)
@@ -312,6 +370,7 @@ def apply_bullet_addition(config: ResumeConfig, draft: ResumeDraft, addition: _B
     
     variant = addition.variant
     if variant == "default": # and variant not in source.variants:
+        debug.print("Normalize default variant label to null")
         variant = None
     if variant is not None and variant not in source.variants:
         raise ResumeLLMError(f"Unknown variant {variant!r} for {addition.entry_id}.{addition.bullet_id}")
@@ -326,4 +385,5 @@ def apply_bullet_addition(config: ResumeConfig, draft: ResumeDraft, addition: _B
     
     entry.bullet_points.insert(index, BulletPointDraft(id=addition.bullet_id, variant=variant))
     
+    debug.print("Insert bullet and validate draft", entry_id=addition.entry_id, bullet_id=addition.bullet_id, index=index, variant=variant)
     return ResumeDraft.model_validate(result.model_dump())
