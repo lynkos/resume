@@ -85,9 +85,8 @@ def resolve_resume(config: ResumeConfig, draft: ResumeDraft) -> Resume:
             )
         )
 
-    allowed_skills = set(config.skills)
     selected_skills = [skill for category in draft.skills for skill in category.skills]
-    unknown_skills = sorted(set(selected_skills) - allowed_skills)
+    unknown_skills = set(selected_skills) - set(config.skills)
     if unknown_skills:
         raise ValueError(f"ResumeDraft contains unknown skills: {', '.join(unknown_skills)}")
 
@@ -134,7 +133,7 @@ def render_resume(
     draft: ResumeDraft,
     template_path: Path,
     output_dir: Path,
-    output_name: str = "resume",
+    output_name: str = "resume"
 ) -> tuple[Path, Resume]:
     resume = resolve_resume(config, draft)
     output_dir.mkdir(parents=True, exist_ok=True)
