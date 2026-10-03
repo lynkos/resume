@@ -1,0 +1,150 @@
+<mxfile host="65bd71144e">
+    <diagram id="658a711C3PC0AbO5UfeM" name="Page-1">
+        <mxGraphModel dx="2530" dy="681" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-14" edge="1" parent="1" source="RPu7tdIcDoWwGpJ-pnim-2" style="edgeStyle=none;html=1;" target="RPu7tdIcDoWwGpJ-pnim-13" value="">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Given these inputs:&lt;div&gt;1. How should I order the sections&lt;/div&gt;&lt;div&gt;2. Which experiences should I keep&lt;/div&gt;&lt;div&gt;3. Which projects should I keep&lt;/div&gt;&lt;div&gt;4. Which skills should I keep&lt;/div&gt;&lt;div&gt;5. Should I hide/include coursework?&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="110" width="240" x="240" y="240" as="geometry"/>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-3" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Job title" vertex="1">
+                    <mxGeometry height="30" width="60" x="190" y="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-4" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Job description" vertex="1">
+                    <mxGeometry height="30" width="100" x="260" y="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Company" vertex="1">
+                    <mxGeometry height="30" width="60" x="370" y="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-6" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Resume" vertex="1">
+                    <mxGeometry height="30" width="60" x="440" y="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-7" edge="1" parent="1" source="RPu7tdIcDoWwGpJ-pnim-3" style="endArrow=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="RPu7tdIcDoWwGpJ-pnim-6" value="">
+                    <mxGeometry height="50" relative="1" width="50" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="220" y="180"/>
+                            <mxPoint x="470" y="180"/>
+                        </Array>
+                        <mxPoint x="480" y="290" as="sourcePoint"/>
+                        <mxPoint x="530" y="240" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-9" edge="1" parent="1" style="endArrow=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="RPu7tdIcDoWwGpJ-pnim-4" value="">
+                    <mxGeometry height="50" relative="1" width="50" as="geometry">
+                        <mxPoint x="310" y="180" as="sourcePoint"/>
+                        <mxPoint x="530" y="240" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-10" edge="1" parent="1" style="endArrow=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="RPu7tdIcDoWwGpJ-pnim-5" value="">
+                    <mxGeometry height="50" relative="1" width="50" as="geometry">
+                        <mxPoint x="400" y="180" as="sourcePoint"/>
+                        <mxPoint x="530" y="240" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-16" edge="1" parent="1" source="RPu7tdIcDoWwGpJ-pnim-13" style="edgeStyle=none;html=1;" target="RPu7tdIcDoWwGpJ-pnim-15" value="">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="For each experience in experiences:&lt;div&gt;Which bullet(s) should I keep?&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="70" width="240" x="240" y="400" as="geometry"/>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-26" edge="1" parent="1" source="RPu7tdIcDoWwGpJ-pnim-15" style="edgeStyle=none;html=1;" target="RPu7tdIcDoWwGpJ-pnim-17" value="">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="For each project in projects:&lt;div&gt;Which bullet(s) should I keep?&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="70" width="240" x="240" y="520" as="geometry"/>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-17" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;" value="Is resume page count &amp;gt; 1?" vertex="1">
+                    <mxGeometry height="180" width="180" x="270" y="640" as="geometry"/>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-19" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Save resume" vertex="1">
+                    <mxGeometry height="70" width="120" x="450" y="845" as="geometry"/>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-20" edge="1" parent="1" source="RPu7tdIcDoWwGpJ-pnim-17" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="RPu7tdIcDoWwGpJ-pnim-19" value="">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="370" y="860" as="sourcePoint"/>
+                        <mxPoint x="470" y="860" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-21" connectable="0" parent="RPu7tdIcDoWwGpJ-pnim-20" style="edgeLabel;resizable=0;html=1;;align=center;verticalAlign=middle;" value="No" vertex="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint y="-18" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-23" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Rewrite so it uses less lines" vertex="1">
+                    <mxGeometry height="70" width="170" x="-55" y="1070" as="geometry"/>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-24" edge="1" parent="1" source="RPu7tdIcDoWwGpJ-pnim-17" style="endArrow=classic;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="RPu7tdIcDoWwGpJ-pnim-29" value="">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="260" y="850" as="sourcePoint"/>
+                        <mxPoint x="360" y="850" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-25" connectable="0" parent="RPu7tdIcDoWwGpJ-pnim-24" style="edgeLabel;resizable=0;html=1;;align=center;verticalAlign=middle;" value="Yes" vertex="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint y="-14" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-27" edge="1" parent="1" style="endArrow=classic;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="RPu7tdIcDoWwGpJ-pnim-2" value="">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="360" y="180" as="sourcePoint"/>
+                        <mxPoint x="230" y="240" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-28" connectable="0" parent="RPu7tdIcDoWwGpJ-pnim-27" style="edgeLabel;resizable=0;html=1;;align=center;verticalAlign=middle;" value="LLM input" vertex="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-29" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;" value="Are there bullet point(s) that are 2+ lines?" vertex="1">
+                    <mxGeometry height="180" width="180" x="115" y="845" as="geometry"/>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-30" edge="1" parent="1" source="RPu7tdIcDoWwGpJ-pnim-29" style="endArrow=classic;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="RPu7tdIcDoWwGpJ-pnim-23" value="">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-130" y="1010" as="sourcePoint"/>
+                        <mxPoint x="-30" y="1010" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-31" connectable="0" parent="RPu7tdIcDoWwGpJ-pnim-30" style="edgeLabel;resizable=0;html=1;;align=center;verticalAlign=middle;" value="Yes" vertex="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint y="-21" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-32" edge="1" parent="1" source="RPu7tdIcDoWwGpJ-pnim-23" style="endArrow=classic;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="RPu7tdIcDoWwGpJ-pnim-17" value="">
+                    <mxGeometry height="50" relative="1" width="50" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-80" y="1105"/>
+                            <mxPoint x="-80" y="630.07"/>
+                            <mxPoint x="360" y="630.07"/>
+                        </Array>
+                        <mxPoint x="-50" y="910" as="sourcePoint"/>
+                        <mxPoint y="860" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-33" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Remove the least consequential bullet point" vertex="1">
+                    <mxGeometry height="70" width="250" x="295" y="1070" as="geometry"/>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-34" edge="1" parent="1" source="RPu7tdIcDoWwGpJ-pnim-29" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="RPu7tdIcDoWwGpJ-pnim-33" value="">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="380" y="1000" as="sourcePoint"/>
+                        <mxPoint x="480" y="1000" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-35" connectable="0" parent="RPu7tdIcDoWwGpJ-pnim-34" style="edgeLabel;resizable=0;html=1;;align=center;verticalAlign=middle;" value="No" vertex="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="RPu7tdIcDoWwGpJ-pnim-36" edge="1" parent="1" source="RPu7tdIcDoWwGpJ-pnim-33" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="RPu7tdIcDoWwGpJ-pnim-17" value="">
+                    <mxGeometry height="50" relative="1" width="50" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="590" y="1105"/>
+                            <mxPoint x="590" y="630.07"/>
+                            <mxPoint x="360" y="630.07"/>
+                        </Array>
+                        <mxPoint x="160" y="930" as="sourcePoint"/>
+                        <mxPoint x="210" y="880" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
