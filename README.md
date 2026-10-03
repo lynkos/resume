@@ -98,14 +98,105 @@ Disable backfill (increasing it allows more candidate trials and LaTeX compilati
    resume --jd-file job.txt --max-backfill-attempts 0
    ```
 
-| Name                  | Default         |
-| --------------------- | --------------- |
-| Config                | `resume.yaml`   |
-| Template              | `resume.tex.j2` |
-| Output Directory      | `Resume/build`  |
-| Max Pages             | `1`             |
-| Max Retries           | `8`             |
-| Max Backfill Attempts | `6`             |
+<details open>
+  <summary><strong>Command Line Arguments</strong></summary>
+   <table align="center" style="width: 100%; text-align: center; display: block; max-width: -moz-fit-content; max-width: fit-content; overflow-x: auto;">
+     <thead>
+       <tr>
+         <th align="center">Option</th>
+         <th align="center">Type</th>
+         <th align="center">Description</th>
+         <th align="center">Default</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr>
+         <td align="center" style="white-space: nowrap;"><code>--jd-file &lt;path&gt;</code></td>
+         <td align="center"><code>Path | None</code></td>
+         <td align="center">Path to a text file containing the job description</td>
+         <td align="center"><code>None</code></td>
+       </tr>
+       <tr>
+         <td align="center" style="white-space: nowrap;"><code>--jd &lt;job description&gt;</code></td>
+         <td align="center"><code>str | None</code></td>
+         <td align="center">Literal job-description text</td>
+         <td align="center"><code>None</code></td>
+       </tr>
+       <tr>
+         <td align="center" style="white-space: nowrap;"><code>--title &lt;title&gt;</code></td>
+         <td align="center"><code>str | None</code></td>
+         <td align="center">Optional job title</td>
+         <td align="center"><code>None</code></td>
+       </tr>
+       <tr>
+         <td align="center" style="white-space: nowrap;"><code>--company &lt;company&gt;</code></td>
+         <td align="center"><code>str | None</code></td>
+         <td align="center">Optional company name</td>
+         <td align="center"><code>None</code></td>
+       </tr>
+       <tr>
+         <td align="center" style="white-space: nowrap;"><code>--config &lt;path&gt;</code></td>
+         <td align="center"><code>Path</code></td>
+         <td align="center">Resume YAML source of truth</td>
+         <td align="center"><code>"resume.yaml"</code></td>
+       </tr>
+       <tr>
+         <td align="center" style="white-space: nowrap;"><code>--template &lt;path&gt;</code></td>
+         <td align="center"><code>Path</code></td>
+         <td align="center">Jinja LaTeX template</td>
+         <td align="center"><code>"resume.tex.j2"</code></td>
+       </tr>
+       <tr>
+         <td align="center" style="white-space: nowrap;"><code>--output-dir &lt;path&gt;</code></td>
+         <td align="center"><code>Path</code></td>
+         <td align="center">Directory for generated TeX/PDF/debug files</td>
+         <td align="center"><code>"Resume/build"</code></td>
+       </tr>
+       <tr>
+         <td align="center" style="white-space: nowrap;"><code>--output-name &lt;name&gt;</code></td>
+         <td align="center"><code>str</code></td>
+         <td align="center">Base filename for generated TeX/PDF</td>
+         <td align="center"><code>"resume"</code></td>
+       </tr>
+       <tr>
+         <td align="center" style="white-space: nowrap;"><code>--max-pages &lt;int&gt;</code></td>
+         <td align="center"><code>int</code></td>
+         <td align="center">Maximum allowed PDF page count; minimum: <code>1</code></td>
+         <td align="center"><code>1</code></td>
+       </tr>
+       <tr>
+         <td align="center" style="white-space: nowrap;"><code>--no-page-limit</code></td>
+         <td align="center"><code>bool</code></td>
+         <td align="center">Disable the PDF page-count requirement</td>
+         <td align="center"><code>False</code></td>
+       </tr>
+       <tr>
+         <td align="center" style="white-space: nowrap;"><code>--max-fit-retries &lt;int&gt;</code></td>
+         <td align="center"><code>int</code></td>
+         <td align="center">Maximum number of one-change fitting retries; minimum: <code>0</code></td>
+         <td align="center"><code>8</code></td>
+       </tr>
+       <tr>
+         <td align="center" style="white-space: nowrap;"><code>--max-backfill-attempts &lt;int&gt;</code></td>
+         <td align="center"><code>int</code></td>
+         <td align="center">Maximum additions tested after fitting; minimum: <code>0</code>, which disables backfilling</td>
+         <td align="center"><code>6</code></td>
+       </tr>
+       <tr>
+         <td align="center" style="white-space: nowrap;"><code>--draft-file &lt;path&gt;</code></td>
+         <td align="center"><code>Path | None</code></td>
+         <td align="center">Start from a saved draft instead of generating a new selection; must be an existing file</td>
+         <td align="center"><code>None</code></td>
+       </tr>
+       <tr>
+         <td align="center" style="white-space: nowrap;"><code>--model &lt;model&gt;</code></td>
+         <td align="center"><code>str | None</code></td>
+         <td align="center">OpenAI model; otherwise uses <code>OPENAI_MODEL</code> from <code>.env</code></td>
+         <td align="center"><code>None</code></td>
+       </tr>
+     </tbody>
+   </table>
+</details>
 
 ### Testing
 ```sh
