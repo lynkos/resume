@@ -64,6 +64,7 @@ def build_tailoring_prompt(config: ResumeConfig, job: JobContext, *, max_pages: 
 
 def _selected_source_config(config: ResumeConfig, draft: ResumeDraft) -> dict[str, object]:
     experiences: dict[str, object] = {}
+    
     for entry in draft.experiences:
         source = config.experiences.get(entry.id)
         

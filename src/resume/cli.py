@@ -1,7 +1,7 @@
 from __future__ import annotations
 from pathlib import Path
 from typing import Annotated
-from typer import Typer, BadParameter, Option, echo
+from typer import Typer, BadParameter, Option
 from dotenv import load_dotenv
 from .build import build_resume
 from .config import load_job_description, load_resume_config
@@ -47,7 +47,7 @@ def generate(
     output_dir.mkdir(parents=True, exist_ok=True)
     (output_dir / "draft.json").write_text(draft.model_dump_json(indent=2), encoding="utf-8")
 
-    pdf_path = build_resume(
+    build_resume(
         config=config,
         draft=draft,
         job=job,
@@ -59,8 +59,6 @@ def generate(
         max_fit_retries=max_fit_retries,
         max_backfill_attempts=max_backfill_attempts,
     )
-
-    echo(str(pdf_path))
 
 
 if __name__ == "__main__":

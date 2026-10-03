@@ -28,10 +28,9 @@ def _clean_latex_artifacts(tex_path: Path) -> None:
     latexmk_log.unlink(missing_ok=True)
 
 
-def _finish_build(tex_path: Path, pdf_path: Path) -> Path:
+def _finish_build(tex_path: Path) -> None:
     _clean_latex_artifacts(tex_path)
     (tex_path.parent / "error.json").unlink(missing_ok=True)
-    return pdf_path
 
 
 def compile_resume(*, tex_path: Path, output_dir: Path) -> Path:
@@ -88,7 +87,7 @@ def build_resume(
     max_pages: int | None = 1,
     max_fit_retries: int = 8,
     max_backfill_attempts: int = 6,
-) -> Path:
+) -> None:
     if max_pages is not None and max_pages < 1:
         raise ValueError("max_pages must be >= 1 or None")
     if max_fit_retries < 0:
@@ -143,7 +142,7 @@ def build_resume(
             (output_dir / "error.json").write_text(dumps(payload, indent=2), encoding="utf-8")
             raise ResumeCompileError(f"Resume compilation failed. Debug TeX: {str(tex_path)}") from exc
 
-        if max_pages is None: return _finish_build(tex_path, pdf_path)
+        if max_pages is None: return _finish_build(tex_path)
 
         assert actual_pages is not None
         if actual_pages <= max_pages:
@@ -162,7 +161,7 @@ def build_resume(
                     max_pages=max_pages,
                     max_attempts=max_backfill_attempts,
                 )
-            return _finish_build(tex_path, pdf_path)
+            return _finish_build(tex_path)
 
         if retry == max_fit_retries:
             payload = {
@@ -207,14 +206,17 @@ def _backfill_resume(
 ) -> None:
     try:
         additions = llm.suggest_additions(
-            config=config, draft=draft, resume=resume, job=job, max_candidates=max_attempts,
+            config=config,
+            draft=draft,
+            resume=resume,
+            job=job,
+            max_candidates=max_attempts
         )
     except ResumeLLMError as exc:
         print(f"Keeping the fitted resume; backfill skipped: {exc}")
         return
 
-    if not additions:
-        return
+    if not additions: return
     draft_path = output_dir / "draft.json"
     # Trials reuse the output paths. Always restore all three files together.
     kept = {path: path.read_bytes() for path in (tex_path, pdf_path, draft_path)}
